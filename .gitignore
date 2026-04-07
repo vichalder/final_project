@@ -3,6 +3,7 @@
 *.json
 *.pkl
 *.sqlite
+*.geojson
 
 # Log files
 *.log

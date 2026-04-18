@@ -30,8 +30,97 @@
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text-dark);
-      background: linear-gradient(135deg, #e8d5f5 0%, #c8e0f8 35%, #d0f0e8 65%, #f5d8e8 100%);
+      background: #ede8f5;
       min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BLOBS ── */
+    .blob-layer {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+      opacity: 0.55;
+      will-change: transform, border-radius;
+    }
+
+    .blob-1 {
+      width: 650px; height: 650px;
+      top: -15%; left: -10%;
+      background: radial-gradient(circle, #d9c8f0, #c0d8f0);
+      animation: morph-1 2s ease-in-out infinite alternate,
+                 drift-1 5s ease-in-out infinite alternate;
+    }
+
+    .blob-2 {
+      width: 550px; height: 550px;
+      top: 30%; right: -8%;
+      background: radial-gradient(circle, #f0c8d8, #d9c8f0);
+      animation: morph-2 4s ease-in-out infinite alternate,
+                 drift-2 10s ease-in-out infinite alternate;
+    }
+
+    .blob-3 {
+      width: 480px; height: 480px;
+      bottom: -10%; left: 25%;
+      background: radial-gradient(circle, #c8f0e0, #c0d8f0);
+      animation: morph-3 10s ease-in-out infinite alternate,
+                 drift-3 15s ease-in-out infinite alternate;
+    }
+
+    .blob-4 {
+      width: 380px; height: 380px;
+      top: 55%; left: 10%;
+      background: radial-gradient(circle, #f5d8e8, #e8d5f5);
+      animation: morph-1 3s ease-in-out infinite alternate-reverse,
+                 drift-2 3s ease-in-out infinite alternate-reverse;
+    }
+
+    .blob-5 {
+      width: 300px; height: 300px;
+      top: 10%; right: 20%;
+      background: radial-gradient(circle, #c8f0e0, #f0c8d8);
+      animation: morph-2 30s ease-in-out infinite alternate,
+                 drift-1 35s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes morph-1 {
+      0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+      100% { border-radius: 50% 50% 40% 60% / 30% 70% 60% 40%; }
+    }
+    @keyframes morph-2 {
+      0%   { border-radius: 40% 60% 60% 40% / 70% 30% 50% 50%; }
+      50%  { border-radius: 70% 30% 40% 60% / 40% 60% 30% 70%; }
+      100% { border-radius: 30% 70% 50% 50% / 60% 40% 70% 30%; }
+    }
+    @keyframes morph-3 {
+      0%   { border-radius: 50% 50% 70% 30% / 40% 60% 40% 60%; }
+      50%  { border-radius: 60% 40% 30% 70% / 60% 40% 60% 40%; }
+      100% { border-radius: 40% 60% 60% 40% / 30% 70% 50% 50%; }
+    }
+
+    @keyframes drift-1 {
+      0%   { transform: translate(0, 0)      scale(1);    }
+      50%  { transform: translate(60px, 40px) scale(1.06); }
+      100% { transform: translate(30px, -30px) scale(0.96); }
+    }
+    @keyframes drift-2 {
+      0%   { transform: translate(0, 0)       scale(1);    }
+      50%  { transform: translate(-50px, 30px) scale(1.08); }
+      100% { transform: translate(20px, 50px)  scale(0.94); }
+    }
+    @keyframes drift-3 {
+      0%   { transform: translate(0, 0)       scale(1);    }
+      50%  { transform: translate(40px, -50px) scale(1.05); }
+      100% { transform: translate(-30px, 20px) scale(1.02); }
     }
 
     /* ── NAV ── */
@@ -191,15 +280,18 @@
       text-transform: uppercase;
     }
 
-    /* ── THE STORY SECTION ── */
+    /* ── NARRATIVE ── */
     #story {
-      padding: 5rem 2rem 8rem;
-      max-width: 900px;
-      margin: 0 auto;
+      padding: 6rem 2rem 10rem;
     }
 
-    .section-label {
-      font-size: 0.75rem;
+    .chapter {
+      max-width: 680px;
+      margin: 0 auto 2rem;
+    }
+
+    .chapter-label {
+      font-size: 0.72rem;
       font-weight: 600;
       letter-spacing: 0.25em;
       text-transform: uppercase;
@@ -207,52 +299,56 @@
       margin-bottom: 0.75rem;
     }
 
-    .section-title {
+    .chapter-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
       font-weight: 700;
       color: var(--text-dark);
-      margin-bottom: 3rem;
       line-height: 1.2;
+      margin-bottom: 1.5rem;
     }
 
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+    .prose {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      line-height: 1.85;
     }
 
-    .story-card {
+    .prose + .prose { margin-top: 1.1rem; }
+
+    .viz-wrap {
+      margin: 3rem auto;
+      max-width: 1100px;
+      border-radius: 24px;
+      overflow: hidden;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
       backdrop-filter: blur(14px);
-      border-radius: 24px;
-      padding: 2rem;
-      box-shadow: 0 4px 24px rgba(160,160,210,0.12);
-      transition: transform 0.25s, box-shadow 0.25s;
+      box-shadow: 0 8px 40px rgba(140,140,200,0.15);
     }
 
-    .story-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 40px rgba(160,160,210,0.22);
+    .viz-caption {
+      max-width: 680px;
+      margin: 1rem auto 0;
+      font-size: 0.82rem;
+      color: var(--text-light);
+      text-align: center;
+      font-style: italic;
     }
 
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    .viz-wrap iframe {
+      width: 100%;
+      height: 580px;
+      border: none;
+      display: block;
     }
 
-    .card-title {
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: var(--text-dark);
-      margin-bottom: 0.6rem;
-    }
-
-    .card-body {
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      line-height: 1.7;
+    .divider {
+      max-width: 680px;
+      margin: 5rem auto;
+      border: none;
+      border-top: 1px solid var(--glass-border);
     }
 
     /* ── FOOTER ── */
@@ -268,6 +364,14 @@
   </style>
 </head>
 <body>
+
+  <div class="blob-layer" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+    <div class="blob blob-5"></div>
+  </div>
 
   <!-- NAV -->
   <nav>
@@ -314,43 +418,33 @@
 
   <!-- THE STORY -->
   <section id="story">
-    <p class="section-label">The Story</p>
-    <h2 class="section-title">How did the world respond?</h2>
 
-    <div class="story-grid">
-      <div class="story-card">
-        <div class="card-icon">🔒</div>
-        <div class="card-title">Lockdowns & Restrictions</div>
-        <div class="card-body">
-          Some countries imposed strict stay-at-home orders early.
-          Others resisted. What did the data say about their outcomes?
-        </div>
-      </div>
-      <div class="story-card">
-        <div class="card-icon">💉</div>
-        <div class="card-title">Vaccination Strategies</div>
-        <div class="card-body">
-          Speed and coverage of vaccination campaigns varied enormously.
-          We trace how rollout pace correlated with mortality curves.
-        </div>
-      </div>
-      <div class="story-card">
-        <div class="card-icon">📊</div>
-        <div class="card-title">The Numbers Behind the Headlines</div>
-        <div class="card-body">
-          Raw case counts tell only part of the story. Excess mortality,
-          testing rates, and healthcare capacity complete the picture.
-        </div>
-      </div>
-      <div class="story-card">
-        <div class="card-icon">🌍</div>
-        <div class="card-title">A Tale of Many Countries</div>
-        <div class="card-body">
-          From South Korea to Sweden, New Zealand to the US — we compare
-          responses across the globe to find patterns in what worked.
-        </div>
-      </div>
+    <!-- Chapter 1 -->
+    <div class="chapter">
+      <p class="chapter-label">Chapter 1</p>
+      <h2 class="chapter-title">A Virus Goes Global</h2>
+      <p class="prose">
+        In late 2019, a novel coronavirus emerged in Wuhan, China. Within months
+        it had crossed every border on earth. By March 2020, the World Health
+        Organization declared a pandemic — the first in over a century to bring
+        global society to a near-standstill.
+      </p>
+      <p class="prose">
+        The map below shows how confirmed cases accumulated country by country
+        over the course of the pandemic. Watch the virus trace the routes of
+        global travel, then fan out into the interior of every continent.
+      </p>
     </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/global_spread.html"
+        title="Global spread of COVID-19 over time"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Confirmed new cases per million people, by month. Data: Google COVID-19 Open Data.</p>
+
   </section>
 
   <!-- FOOTER -->

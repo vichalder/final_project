@@ -418,7 +418,7 @@
     }
 
     // Draw country borders from TopoJSON
-    fetch('countries-110m.json')
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json')
       .then(r => r.json())
       .then(world => {
         // topojson-client loaded as UMD global

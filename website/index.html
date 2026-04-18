@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COVID-19: What approach works for pandemics?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js" } }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pastel-blue:   #c0d8f0;
+      --pastel-purple: #d9c8f0;
+      --pastel-pink:   #f0c8d8;
+      --pastel-mint:   #c8f0e0;
+      --glass-bg:      rgba(255, 255, 255, 0.25);
+      --glass-border:  rgba(255, 255, 255, 0.45);
+      --text-dark:     #1a1a2e;
+      --text-mid:      #3a3a5c;
+      --text-light:    #6a6a8c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      background: linear-gradient(135deg, #e8d5f5 0%, #c8e0f8 35%, #d0f0e8 65%, #f5d8e8 100%);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      letter-spacing: 0.03em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-mid);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text-dark); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+    }
+
+    #globe-wrap {
+      width: 340px;
+      height: 340px;
+      margin-bottom: 3rem;
+      position: relative;
+      cursor: grab;
+    }
+
+    #globe-wrap:active { cursor: grabbing; }
+
+    #globe-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--text-dark);
+      max-width: 700px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text-mid);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(160,160,210,0.2);
+    }
+
+    .btn-primary:hover {
+      background: rgba(255,255,255,0.45);
+      box-shadow: 0 8px 30px rgba(160,160,210,0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding: 3rem 2rem;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      min-width: 160px;
+      box-shadow: 0 4px 24px rgba(160,160,210,0.15);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 35px rgba(160,160,210,0.25);
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── THE STORY SECTION ── */
+    #story {
+      padding: 5rem 2rem 8rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 3rem;
+      line-height: 1.2;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .story-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 4px 24px rgba(160,160,210,0.12);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+
+    .story-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(160,160,210,0.22);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--text-dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .card-body {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-light);
+      border-top: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">COVID-19 Data Story</span>
+    <ul class="nav-links">
+      <li><a href="#story">The Story</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div id="globe-wrap">
+      <canvas id="globe-canvas"></canvas>
+    </div>
+
+    <p class="hero-eyebrow">DTU · Data Story · 2026</p>
+    <h1 class="hero-title">COVID-19: What approach works for pandemics?</h1>
+    <p class="hero-subtitle">
+      A data-driven exploration of how different countries responded to the pandemic
+      — and what the numbers reveal about which strategies actually worked.
+    </p>
+    <a href="#story" class="btn-primary">Read the Story</a>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip">
+    <div class="stat-card">
+      <div class="stat-number">700M+</div>
+      <div class="stat-label">Cases worldwide</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">7M+</div>
+      <div class="stat-label">Lives lost</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">195</div>
+      <div class="stat-label">Countries affected</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3 yrs</div>
+      <div class="stat-label">Duration of crisis</div>
+    </div>
+  </div>
+
+  <!-- THE STORY -->
+  <section id="story">
+    <p class="section-label">The Story</p>
+    <h2 class="section-title">How did the world respond?</h2>
+
+    <div class="story-grid">
+      <div class="story-card">
+        <div class="card-icon">🔒</div>
+        <div class="card-title">Lockdowns & Restrictions</div>
+        <div class="card-body">
+          Some countries imposed strict stay-at-home orders early.
+          Others resisted. What did the data say about their outcomes?
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-icon">💉</div>
+        <div class="card-title">Vaccination Strategies</div>
+        <div class="card-body">
+          Speed and coverage of vaccination campaigns varied enormously.
+          We trace how rollout pace correlated with mortality curves.
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-icon">📊</div>
+        <div class="card-title">The Numbers Behind the Headlines</div>
+        <div class="card-body">
+          Raw case counts tell only part of the story. Excess mortality,
+          testing rates, and healthcare capacity complete the picture.
+        </div>
+      </div>
+      <div class="story-card">
+        <div class="card-icon">🌍</div>
+        <div class="card-title">A Tale of Many Countries</div>
+        <div class="card-body">
+          From South Korea to Sweden, New Zealand to the US — we compare
+          responses across the globe to find patterns in what worked.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    DTU · Data Story Project · 2026 &nbsp;|&nbsp; Made with open data
+  </footer>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('globe-canvas');
+    const wrap   = document.getElementById('globe-wrap');
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+
+    const scene  = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+    camera.position.z = 2.8;
+
+    // Lights
+    scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+    const light1 = new THREE.PointLight(0xc0d8f0, 3, 10);
+    const light2 = new THREE.PointLight(0xd9c8f0, 2.5, 10);
+    scene.add(light1, light2);
+
+    // Globe group
+    const globeGroup = new THREE.Group();
+    scene.add(globeGroup);
+
+    // Glass sphere body
+    globeGroup.add(new THREE.Mesh(
+      new THREE.SphereGeometry(1, 64, 64),
+      new THREE.MeshPhongMaterial({
+        color: 0xd8eeff,
+        transparent: true,
+        opacity: 0.10,
+        shininess: 120,
+        specular: 0xffffff,
+      })
+    ));
+
+    // Outer glow rim
+    globeGroup.add(new THREE.Mesh(
+      new THREE.SphereGeometry(1.02, 64, 64),
+      new THREE.MeshPhongMaterial({
+        color: 0xb8d0f8,
+        transparent: true,
+        opacity: 0.08,
+        side: THREE.BackSide,
+      })
+    ));
+
+    // Convert geographic coordinates to a point on the unit sphere.
+    // lng/lat in degrees → THREE.Vector3
+    function geo2xyz(lng, lat, r = 1.005) {
+      const phi    = lat * Math.PI / 180;
+      const lambda = lng * Math.PI / 180;
+      return new THREE.Vector3(
+        r * Math.cos(phi) * Math.sin(lambda),
+        r * Math.sin(phi),
+        r * Math.cos(phi) * Math.cos(lambda)
+      );
+    }
+
+    // Draw country borders from TopoJSON
+    fetch('countries-110m.json')
+      .then(r => r.json())
+      .then(world => {
+        // topojson-client loaded as UMD global
+        const borders = window.topojson.mesh(world, world.objects.countries);
+        const verts = [];
+
+        borders.coordinates.forEach(line => {
+          for (let i = 0; i < line.length - 1; i++) {
+            const a = geo2xyz(line[i][0],     line[i][1]);
+            const b = geo2xyz(line[i + 1][0], line[i + 1][1]);
+            verts.push(a.x, a.y, a.z, b.x, b.y, b.z);
+          }
+        });
+
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
+        globeGroup.add(new THREE.LineSegments(geo, new THREE.LineBasicMaterial({
+          color: 0x90bce8,
+          transparent: true,
+          opacity: 0.7,
+        })));
+      });
+
+    // Floating particles
+    const N      = 90;
+    const PASTEL = [0xc0d8f0, 0xd9c8f0, 0xf0c8d8, 0xc8f0e0, 0xe8d5f5];
+    const pPos   = new Float32Array(N * 3);
+    const pCol   = new Float32Array(N * 3);
+    const pPhase = new Float32Array(N);
+    const pSpeed = new Float32Array(N);
+    const pBaseR = new Float32Array(N);
+    const pTheta = new Float32Array(N);
+    const pPhi   = new Float32Array(N);
+
+    for (let i = 0; i < N; i++) {
+      pBaseR[i] = 1.25 + Math.random() * 0.55;
+      pTheta[i] = Math.random() * Math.PI * 2;
+      pPhi[i]   = Math.acos(2 * Math.random() - 1);
+      pPhase[i] = Math.random() * Math.PI * 2;
+      pSpeed[i] = 0.004 + Math.random() * 0.008;
+      const col = new THREE.Color(PASTEL[i % PASTEL.length]);
+      pCol[i * 3]     = col.r;
+      pCol[i * 3 + 1] = col.g;
+      pCol[i * 3 + 2] = col.b;
+    }
+
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pPos, 3));
+    pGeo.setAttribute('color',    new THREE.BufferAttribute(pCol, 3));
+    scene.add(new THREE.Points(pGeo, new THREE.PointsMaterial({
+      size: 0.022, sizeAttenuation: true, vertexColors: true,
+      transparent: true, opacity: 0.75,
+    })));
+
+    // Mouse / touch drag
+    let dragging = false;
+    let prev = { x: 0, y: 0 };
+
+    canvas.addEventListener('mousedown', e => { dragging = true; prev = { x: e.clientX, y: e.clientY }; });
+    window.addEventListener('mouseup',   () => { dragging = false; });
+    window.addEventListener('mousemove', e => {
+      if (!dragging) return;
+      globeGroup.rotation.y += (e.clientX - prev.x) * 0.005;
+      globeGroup.rotation.x  = Math.max(-1.0, Math.min(1.0,
+        globeGroup.rotation.x + (e.clientY - prev.y) * 0.005));
+      prev = { x: e.clientX, y: e.clientY };
+    });
+    canvas.addEventListener('touchstart', e => {
+      dragging = true; prev = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }, { passive: true });
+    window.addEventListener('touchend', () => { dragging = false; });
+    window.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      globeGroup.rotation.y += (e.touches[0].clientX - prev.x) * 0.005;
+      globeGroup.rotation.x  = Math.max(-1.0, Math.min(1.0,
+        globeGroup.rotation.x + (e.touches[0].clientY - prev.y) * 0.005));
+      prev = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }, { passive: true });
+
+    // Animation loop
+    let tick = 0;
+    (function animate() {
+      requestAnimationFrame(animate);
+      tick++;
+
+      if (!dragging) globeGroup.rotation.y += 0.0012;
+
+      light1.position.set(Math.cos(tick * 0.009) * 3,  1.5, Math.sin(tick * 0.009) * 3);
+      light2.position.set(Math.cos(tick * 0.006 + 2) * 3, -1, Math.sin(tick * 0.006 + 2) * 3);
+
+      const pa = pGeo.attributes.position.array;
+      for (let i = 0; i < N; i++) {
+        const r     = pBaseR[i] + Math.sin(pPhase[i] + tick * pSpeed[i]) * 0.1;
+        const theta = pTheta[i] + tick * 0.0008;
+        const phi   = pPhi[i]   + Math.sin(pPhase[i] * 0.5 + tick * 0.001) * 0.15;
+        pa[i * 3]     = r * Math.sin(phi) * Math.cos(theta);
+        pa[i * 3 + 1] = r * Math.cos(phi);
+        pa[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+      }
+      pGeo.attributes.position.needsUpdate = true;
+
+      renderer.render(scene, camera);
+    })();
+
+    window.addEventListener('resize', () => {
+      renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+    });
+  </script>
+
+</body>
+</html>

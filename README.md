@@ -29,8 +29,10 @@ plots/
   total_deaths_world.html        # Plotly global death trends
   total_infections_world.html    # Plotly global infection trends
 
-pages/
-  index.html                     # Website homepage (deployed via GitHub Pages)
+docs/                            # GitHub Pages source (served as site root)
+  index.html                     # Main page — full data story, single scroll
+  plots/
+    global_spread.html           # Copy of choropleth map, embedded in the story
 
 requirements.txt
 ```

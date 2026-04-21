@@ -44,6 +44,7 @@ docs/                              # GitHub Pages root — ONLY files here are s
   index.html                       # The entire website (single scroll, one file)
   plots/
     global_spread.html             # Deployed copy of choropleth — embedded in Chapter 1
+    confirmed_cases.png            # 7-day avg new cases for DK/DE/UK — embedded in Chapter 2
 ```
 
 **Key file for all website work:** `docs/index.html`
@@ -82,16 +83,18 @@ docs/                              # GitHub Pages root — ONLY files here are s
 | Animated morphing blob background | Done |
 | Dark mode toggle | Done |
 | Chapter 1 narrative + global spread map | Done |
+| Chapter 2 narrative + focus-country cases chart (DK/DE/UK) | Done |
 | GitHub Pages configuration | Done (`/docs/`, branch `main`) |
-| Chapters 2+ (deaths, stringency, conclusions) | Not started |
+| Chapters 3+ (deaths, stringency, conclusions) | Not started |
 | Julie's notebook | Not started |
 
 ---
 
 ## Task board
 
-- [ ] Add Chapter 2: total infections over time — embed `plots/total_infections_world.html`
-- [ ] Add Chapter 3: deaths — embed `plots/total_deaths_world.html`
+- [x] Add Chapter 2: focus countries (DK/DE/UK) — narrative prose + `plots/confirmed_cases.png`
+- [ ] Add Chapter 3: total infections over time — embed `plots/total_infections_world.html`
+- [ ] Add Chapter 4: deaths — embed `plots/total_deaths_world.html`
 - [ ] Add chapters on government stringency and vaccination (pending notebook outputs)
 - [ ] Add a conclusions / key findings section at the bottom
 - [ ] Complete `notebooks/Julies_arbejdsfil.ipynb`
@@ -114,3 +117,7 @@ _Update this section before ending each session. Include: what you did, what you
 - GitHub Pages: configured to serve from `/docs/` — live at `https://vichalder.github.io/final_project/`
 - Globe fetches TopoJSON from CDN (not local file) — works on GitHub Pages and local servers; does NOT work with `file://` (fetch is blocked on file:// by all browsers — this is expected)
 - Plots must be copied into `docs/plots/` to be accessible on GitHub Pages
+
+**2026-04-21 — Victor (human) + Claude:**
+- Styled `docs/plots/global_spread.html` to match `index.html`: injected Inter font, `#ede8f5` body background, glassmorphism on the time slider, zoom controls, legend, and attribution bar — all via a CSS block appended to `<head>` (file is Folium-generated so editing JS/data was avoided)
+- Added Chapter 2 to `docs/index.html`: prose introducing Denmark, Germany, and UK as focus countries; embeds `docs/plots/confirmed_cases.png` in a `.viz-wrap` card

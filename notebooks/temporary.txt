@@ -1,0 +1,9 @@
+Now, I need you to add 6 more plots to @notebooks/victors_workfile.ipynb . They are very    
+similar to the plot we just worked with. The only thing that changes is the bottom row of subplots. Now, we have done "stay at home". Now we need to do the following: workplace    
+closing, public transport closing, facial covering restrictions, school closings, testing, vaccination policy. Is everything clear?
+
+head -n 1 data/oxford-government-response.csv                                                                                                                          │
+│                                                                                                                                                                                 │
+│ date,location_key,school_closing,workplace_closing,cancel_public_events,restrictions_on_gatherings,public_transport_closing,stay_at_home_requirements,restrictions_on_internal_ │
+│ movement,international_travel_controls,income_support,debt_relief,fiscal_measures,international_support,public_information_campaigns,testing_policy,contact_tracing,emergency_i │
+│ nvestment_in_healthcare,investment_in_vaccines,facial_coverings,vaccination_policy,stringency_index

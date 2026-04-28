@@ -246,7 +246,7 @@
       font-weight: 700;
       line-height: 1.15;
       color: var(--text-dark);
-      max-width: 700px;
+      max-width: 900px;
       margin-bottom: 1.5rem;
     }
 
@@ -436,7 +436,7 @@
     </div>
 
     <p class="hero-eyebrow">DTU · Data Story · 2026</p>
-    <h1 class="hero-title">COVID-19: What approach works for pandemics?</h1>
+    <h1 class="hero-title">COVID-19: What approach works for modern pandemics?</h1>
     <p class="hero-subtitle">
       A data-driven exploration of how different countries responded to the pandemic
       — and what the numbers reveal about which strategies actually worked.
@@ -529,6 +529,34 @@
       />
     </div>
     <p class="viz-caption">7-day rolling average of new confirmed cases. Denmark (pink), Germany (blue), Great Britain (teal). Data: Google COVID-19 Open Data.</p>
+
+    <hr class="divider" />
+
+    <!-- Chapter 3 -->
+    <div class="chapter">
+      <p class="chapter-label">Chapter 3</p>
+      <h2 class="chapter-title">The Full Picture</h2>
+      <p class="prose">
+        Cases alone don't tell the whole story. The interactive dashboard below layers
+        confirmed deaths, vaccination progress, and government stringency alongside case
+        counts — revealing how each country's policy choices and vaccine rollout shaped
+        the trajectory of the pandemic.
+      </p>
+      <p class="prose">
+        Use the range selector or drag the slider at the bottom to zoom into any wave.
+        Toggle individual countries in the legend to compare directly.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/dashboard.html"
+        title="COVID-19 dashboard: cases, deaths, vaccinations, and stringency"
+        loading="lazy"
+        style="height: 1020px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Cases, deaths, vaccination rate, stringency index, and new doses. Denmark · Germany · Great Britain. Data: Google COVID-19 Open Data.</p>
 
   </section>
 
@@ -715,11 +743,21 @@
 
     root.setAttribute('data-theme', saved ?? system);
 
+    function notifyDashboard(theme) {
+      const iframe = document.querySelector('iframe[src*="dashboard"]');
+      if (iframe) iframe.contentWindow.postMessage({ covidTheme: theme }, '*');
+    }
+
     toggle.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      notifyDashboard(next);
     });
+
+    // Send current theme once the iframe finishes loading
+    document.querySelector('iframe[src*="dashboard"]')
+      ?.addEventListener('load', () => notifyDashboard(root.getAttribute('data-theme')));
   </script>
 
 </body>

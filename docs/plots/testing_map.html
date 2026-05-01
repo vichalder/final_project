@@ -3595,4 +3595,27 @@
             feature_group_069acf618920b06b5479a4282be00872.addTo(map_91e02fee69bff0db9367a98eae845925);
         
 </script>
+<style>
+html.dark-mode .leaflet-tile-pane {
+  filter: invert(100%) hue-rotate(180deg) brightness(0.75) contrast(1.05);
+}
+html.dark-mode text.caption {
+  fill: #f0eeff !important;
+}
+html.dark-mode .leaflet-container {
+  background: #0c0a18;
+}
+</style>
+<script>
+window.addEventListener('message', function(e) {
+  if (!e.data || !e.data.covidTheme) return;
+  document.documentElement.classList.toggle('dark-mode', e.data.covidTheme === 'dark');
+});
+document.addEventListener('DOMContentLoaded', function() {
+  try {
+    var t = window.parent.document.documentElement.getAttribute('data-theme');
+    if (t) window.dispatchEvent(new MessageEvent('message', {data: {covidTheme: t}}));
+  } catch(e) {}
+});
+</script>
 </html>

@@ -403,6 +403,21 @@
       background: var(--glass-bg);
       backdrop-filter: blur(12px);
     }
+
+    /* ── LOCKDOWN GRID ── */
+    .lockdown-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .lockdown-grid .viz-wrap {
+      max-width: 100%;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -467,9 +482,9 @@
   <!-- THE STORY -->
   <section id="story">
 
-    <!-- Chapter 1 -->
+    <!-- Section 1: Global -->
     <div class="chapter">
-      <p class="chapter-label">Chapter 1</p>
+      <p class="chapter-label">Section 1</p>
       <h2 class="chapter-title">A Virus Goes Global</h2>
       <p class="prose">
         In late 2019, a novel coronavirus emerged in Wuhan, China. Within months
@@ -495,10 +510,35 @@
 
     <hr class="divider" />
 
-    <!-- Chapter 2 -->
     <div class="chapter">
-      <p class="chapter-label">Chapter 2</p>
-      <h2 class="chapter-title">Three Countries, Three Strategies</h2>
+      <p class="chapter-label">Section 1 — continued</p>
+      <h2 class="chapter-title">A crisis that moved in waves</h2>
+      <p class="prose">
+        Governments around the world scrambled to contain the spread, but the virus moved faster than policy could respond. Each wave brought new variants, new restrictions, and new lessons — though not all countries absorbed those lessons at the same pace. The first wave of early 2020 was characterized by uncertainty and improvisation; later waves hit populations that were exhausted, polarised, and increasingly divided over the legitimacy of restrictions.
+      </p>
+      <p class="prose">
+        The stringency index below captures the aggregate tightness of government restrictions over time — school closures, workplace rules, travel bans, and stay-at-home orders combined into a single score. Notice how the world briefly exhaled in summer 2020, then tightened again as the second wave arrived, and again for Omicron in early 2022.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/kats plots/interactive_government_stringency_index_7day_avg.html"
+        title="Average global government stringency index over time"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Average Government Stringency Index (7-day avg) for selected countries. Data: Google COVID-19 Open Data.</p>
+
+    <hr class="divider" />
+
+    <!-- Section 2: Zooming In -->
+    <div class="chapter">
+      <p class="chapter-label">Section 2</p>
+      <h2 class="chapter-title">One shared pandemic, national timelines</h2>
+      <p class="prose">
+        While the virus paid no attention to borders, the human response was deeply national — shaped by healthcare infrastructure, political culture, public trust, and geography. Countries that appeared similar on paper diverged sharply in their epidemic trajectories. The difference between a well-managed wave and an overwhelmed health system often came down to decisions made in the first weeks.
+      </p>
       <p class="prose">
         To understand what made the difference, we narrow our lens to three European
         neighbours: <strong>Denmark</strong>, <strong>Germany</strong>, and the
@@ -506,6 +546,11 @@
         variants, and broadly similar healthcare systems — yet their epidemic curves
         diverged in telling ways.
       </p>
+    </div>
+
+    <div class="chapter">
+      <p class="chapter-label">Section 2 — continued</p>
+      <h2 class="chapter-title">The same virus, different waves</h2>
       <p class="prose">
         Denmark moved swiftly and decisively, closing schools and borders before most
         of Europe had registered its first deaths. Germany leaned on its federal
@@ -532,10 +577,156 @@
 
     <hr class="divider" />
 
-    <!-- Chapter 3 -->
     <div class="chapter">
-      <p class="chapter-label">Chapter 3</p>
+      <p class="chapter-label">Section 2 — continued</p>
+      <h2 class="chapter-title">Cases were not the whole story</h2>
+      <p class="prose">
+        Confirmed case counts are shaped as much by testing capacity as by true infection rates. Countries that tested widely recorded more cases; those with limited infrastructure undercounted. To compare fairly across nations, we need to look beyond raw case numbers — at deaths, at hospitalisations, at the policies governments put in place, and at the interventions that ultimately changed the course of the pandemic.
+      </p>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Section 3: The Age of Lockdown -->
+    <div class="chapter">
+      <p class="chapter-label">Section 3</p>
+      <h2 class="chapter-title">The Age of Lockdown</h2>
+      <p class="prose">
+        The pandemic triggered an unprecedented experiment in social control. For the first time in modern history, billions of people were asked — and in many countries legally required — to stay home, close their businesses, keep their children out of school, and forgo ordinary life for an indefinite period.
+      </p>
+      <p class="prose">
+        The human cost of these restrictions was enormous: lost livelihoods, deferred education, strained mental health, and widening inequality. But the epidemiological argument was real: mobility data showed that when people moved less, the virus spread less. The question was never whether restrictions worked in theory — but how long they could be sustained, and at what price.
+      </p>
+    </div>
+
+    <div class="chapter">
+      <p class="chapter-label">Section 3 — continued</p>
+      <h2 class="chapter-title">Restrictions followed different political rhythms</h2>
+      <p class="prose">
+        The charts below track four key dimensions of pandemic restrictions for Denmark, Germany, and Great Britain — stay-at-home requirements, workplace closures, public transport limits, and school closures. Each policy has its own rhythm, shaped by variant timing, political tolerance, and public compliance.
+      </p>
+    </div>
+
+    <div class="lockdown-grid">
+      <div>
+        <div class="viz-wrap">
+          <iframe
+            src="plots/stay_at_home.html"
+            title="Stay-at-home requirements"
+            loading="lazy"
+            style="height: 400px;"
+          ></iframe>
+        </div>
+        <p class="viz-caption">Stay-at-home requirements over time. Data: Google COVID-19 Open Data.</p>
+      </div>
+      <div>
+        <div class="viz-wrap">
+          <iframe
+            src="plots/workplace_closing.html"
+            title="Workplace closing policies"
+            loading="lazy"
+            style="height: 400px;"
+          ></iframe>
+        </div>
+        <p class="viz-caption">Workplace closing policies over time. Data: Google COVID-19 Open Data.</p>
+      </div>
+      <div>
+        <div class="viz-wrap">
+          <iframe
+            src="plots/public_transport_closing.html"
+            title="Public transport closing policies"
+            loading="lazy"
+            style="height: 400px;"
+          ></iframe>
+        </div>
+        <p class="viz-caption">Public transport closing policies over time. Data: Google COVID-19 Open Data.</p>
+      </div>
+      <div>
+        <div class="viz-wrap">
+          <iframe
+            src="plots/school_closing.html"
+            title="School closing policies"
+            loading="lazy"
+            style="height: 400px;"
+          ></iframe>
+        </div>
+        <p class="viz-caption">School closing policies over time. Data: Google COVID-19 Open Data.</p>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Section 4: Interventions -->
+    <div class="chapter">
+      <p class="chapter-label">Section 4</p>
+      <h2 class="chapter-title">Interventions</h2>
+    </div>
+
+    <div class="chapter">
+      <p class="chapter-label">Section 4 — Testing</p>
+      <h2 class="chapter-title">Testing as a Tool</h2>
+      <p class="prose">
+        Mass testing was one of the few levers governments could pull before vaccines arrived.
+        Countries that tested broadly could isolate cases early and break chains of transmission;
+        those that tested narrowly flew blind. The chart below tracks daily tests per 100,000
+        people — and the official testing policy — for Denmark, Germany, and Great Britain
+        across the pandemic.
+      </p>
+      <p class="prose">
+        Denmark's extraordinarily high testing rates stand out: at peak, the country ran
+        more tests per capita than almost any nation on earth, giving authorities a
+        near-real-time picture of community spread. Notice how testing intensity and policy
+        openness moved together — countries that tested more were also quicker to ease restrictions.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/testing_chart.html"
+        title="Daily COVID-19 tests per 100k and testing policy for Denmark, Germany, and Great Britain"
+        loading="lazy"
+        style="height: 580px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Daily tests per 100k people (7-day avg) and testing policy stringency. Denmark (pink) · Germany (blue) · Great Britain (teal). Data: Google COVID-19 Open Data.</p>
+
+    <hr class="divider" />
+
+    <div class="chapter">
+      <p class="chapter-label">Section 4 — Testing continued</p>
+      <h2 class="chapter-title">A World Tested Unevenly</h2>
+      <p class="prose">
+        The capacity to test was not shared equally. While wealthy nations processed millions
+        of samples a day, large parts of the Global South had little to no systematic testing
+        infrastructure. The map below shows average daily tests per 100,000 people for each
+        country — a stark picture of the global inequality that shaped how the pandemic was
+        seen, tracked, and ultimately controlled.
+      </p>
+      <p class="prose">
+        Countries shown in grey had no reliable testing data reported. The contrast between
+        high-income nations clustered in Europe and North America and much of Africa and
+        South Asia underscores how the pandemic's true scale may never be fully known.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/testing_map.html"
+        title="Global map of COVID-19 testing rates by country"
+        loading="lazy"
+        style="height: 600px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Average daily tests per 100k people (7-day avg, monthly mean) by country. Data: Google COVID-19 Open Data.</p>
+
+    <hr class="divider" />
+
+    <div class="chapter">
+      <p class="chapter-label">Section 4 — Vaccination</p>
       <h2 class="chapter-title">The Full Picture</h2>
+      <p class="prose">
+        When vaccines arrived in late 2020, the pandemic entered a new phase. Vaccination campaigns moved at vastly different speeds — shaped by supply deals, logistics, vaccine hesitancy, and political will. The countries that vaccinated fastest generally saw the sharpest declines in severe disease, even as case counts continued to climb under Omicron.
+      </p>
       <p class="prose">
         Cases alone don't tell the whole story. The interactive dashboard below layers
         confirmed deaths, vaccination progress, and government stringency alongside case
@@ -557,6 +748,55 @@
       ></iframe>
     </div>
     <p class="viz-caption">Cases, deaths, vaccination rate, stringency index, and new doses. Denmark · Germany · Great Britain. Data: Google COVID-19 Open Data.</p>
+
+    <hr class="divider" />
+
+    <!-- Section 5: The Question That Remains -->
+    <div class="chapter">
+      <p class="chapter-label">Section 5</p>
+      <h2 class="chapter-title">The Question That Remains</h2>
+      <p class="chapter-label" style="margin-top: 1rem;">Revisiting the trade-offs of pandemic policy</p>
+      <p class="prose">
+        In the years since the pandemic peaked, governments, scientists, and citizens have struggled to assess what worked, what failed, and what should be done differently next time. The answers are not simple — every policy carried costs as well as benefits, and the same intervention could succeed in one context while failing in another.
+      </p>
+      <p class="prose">
+        Stricter lockdowns may have saved lives in the short term, but they also caused lasting harm to education, mental health, and economic equality. Vaccination succeeded where deployed rapidly — but global vaccine equity remained a persistent failure. Mass testing gave some countries a decisive edge, while others relied on blunter instruments. No single approach worked everywhere — and every government made trade-offs they would later regret.
+      </p>
+    </div>
+
+    <div class="chapter">
+      <h2 class="chapter-title">How would you have handled it?</h2>
+      <p class="prose">
+        The interactive charts below let you explore the key levers of pandemic response — cases and deaths, government stringency, and cumulative outcomes — for any combination of countries and time windows. Use them to form your own judgement about which strategies held up under pressure.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/kats plots/interactive_daily_new_confirmed_cases_per_100k_7day_avg.html"
+        title="Interactive: Daily new confirmed cases per 100k"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Interactive comparison of daily new confirmed cases per 100k people (7-day avg). Data: Google COVID-19 Open Data.</p>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/kats plots/interactive_country_group_policy_explorer.html"
+        title="Interactive: Country group policy explorer"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Interactive comparison of government stringency and selected restrictions by country group. Data: Google COVID-19 Open Data.</p>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/kats plots/interactive_bar_chart_cumulative_cases_and_deaths_per_100k.html"
+        title="Interactive: Cumulative cases and deaths per 100k"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Interactive comparison of cumulative cases and deaths per 100k people. Data: Google COVID-19 Open Data.</p>
 
   </section>
 
@@ -743,21 +983,23 @@
 
     root.setAttribute('data-theme', saved ?? system);
 
-    function notifyDashboard(theme) {
-      const iframe = document.querySelector('iframe[src*="dashboard"]');
-      if (iframe) iframe.contentWindow.postMessage({ covidTheme: theme }, '*');
+    function notifyIframes(theme) {
+      document.querySelectorAll('iframe').forEach(iframe => {
+        try { iframe.contentWindow.postMessage({ covidTheme: theme }, '*'); } catch(e) {}
+      });
     }
 
     toggle.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      notifyDashboard(next);
+      notifyIframes(next);
     });
 
-    // Send current theme once the iframe finishes loading
-    document.querySelector('iframe[src*="dashboard"]')
-      ?.addEventListener('load', () => notifyDashboard(root.getAttribute('data-theme')));
+    // Send current theme to each iframe once it finishes loading
+    document.querySelectorAll('iframe').forEach(iframe => {
+      iframe.addEventListener('load', () => notifyIframes(root.getAttribute('data-theme')));
+    });
   </script>
 
 </body>

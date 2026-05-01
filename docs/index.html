@@ -558,6 +558,67 @@
     </div>
     <p class="viz-caption">Cases, deaths, vaccination rate, stringency index, and new doses. Denmark · Germany · Great Britain. Data: Google COVID-19 Open Data.</p>
 
+    <hr class="divider" />
+
+    <!-- Chapter 4 -->
+    <div class="chapter">
+      <p class="chapter-label">Chapter 4</p>
+      <h2 class="chapter-title">Testing as a Tool</h2>
+      <p class="prose">
+        Mass testing was one of the few levers governments could pull before vaccines arrived.
+        Countries that tested broadly could isolate cases early and break chains of transmission;
+        those that tested narrowly flew blind. The chart below tracks daily tests per 100,000
+        people — and the official testing policy — for Denmark, Germany, and Great Britain
+        across the pandemic.
+      </p>
+      <p class="prose">
+        Denmark's extraordinarily high testing rates stand out: at peak, the country ran
+        more tests per capita than almost any nation on earth, giving authorities a
+        near-real-time picture of community spread. Notice how testing intensity and policy
+        openness moved together — countries that tested more were also quicker to ease restrictions.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/testing_chart.html"
+        title="Daily COVID-19 tests per 100k and testing policy for Denmark, Germany, and Great Britain"
+        loading="lazy"
+        style="height: 580px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Daily tests per 100k people (7-day avg) and testing policy stringency. Denmark (pink) · Germany (blue) · Great Britain (teal). Data: Google COVID-19 Open Data.</p>
+
+    <hr class="divider" />
+
+    <!-- Chapter 5 -->
+    <div class="chapter">
+      <p class="chapter-label">Chapter 5</p>
+      <h2 class="chapter-title">A World Tested Unevenly</h2>
+      <p class="prose">
+        The capacity to test was not shared equally. While wealthy nations processed millions
+        of samples a day, large parts of the Global South had little to no systematic testing
+        infrastructure. The map below shows average daily tests per 100,000 people for each
+        country — a stark picture of the global inequality that shaped how the pandemic was
+        seen, tracked, and ultimately controlled.
+      </p>
+      <p class="prose">
+        Countries shown in grey had no reliable testing data reported. The contrast between
+        high-income nations clustered in Europe and North America and much of Africa and
+        South Asia underscores how the pandemic's true scale may never be fully known.
+      </p>
+    </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/testing_map.html"
+        title="Global map of COVID-19 testing rates by country"
+        loading="lazy"
+        style="height: 600px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Average daily tests per 100k people (7-day avg, monthly mean) by country. Data: Google COVID-19 Open Data.</p>
+
   </section>
 
   <!-- FOOTER -->
@@ -743,21 +804,23 @@
 
     root.setAttribute('data-theme', saved ?? system);
 
-    function notifyDashboard(theme) {
-      const iframe = document.querySelector('iframe[src*="dashboard"]');
-      if (iframe) iframe.contentWindow.postMessage({ covidTheme: theme }, '*');
+    function notifyIframes(theme) {
+      document.querySelectorAll('iframe').forEach(iframe => {
+        try { iframe.contentWindow.postMessage({ covidTheme: theme }, '*'); } catch(e) {}
+      });
     }
 
     toggle.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
-      notifyDashboard(next);
+      notifyIframes(next);
     });
 
-    // Send current theme once the iframe finishes loading
-    document.querySelector('iframe[src*="dashboard"]')
-      ?.addEventListener('load', () => notifyDashboard(root.getAttribute('data-theme')));
+    // Send current theme to each iframe once it finishes loading
+    document.querySelectorAll('iframe').forEach(iframe => {
+      iframe.addEventListener('load', () => notifyIframes(root.getAttribute('data-theme')));
+    });
   </script>
 
 </body>

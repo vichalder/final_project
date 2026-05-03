@@ -385,6 +385,23 @@
       border: none;
       display: block;
     }
+    .viz-wrap-tall {
+      margin: 3rem auto;
+      max-width: 1100px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 40px rgba(140,140,200,0.15);
+    }
+
+    .viz-wrap-tall iframe {
+      width: 100%;
+      height: 900px;
+      border: none;
+      display: block;
+    }
 
     .divider {
       max-width: 680px;
@@ -717,7 +734,7 @@
         style="height: 600px;"
       ></iframe>
     </div>
-    <p class="viz-caption">Average daily tests per 100k people (7-day avg, monthly mean) by country. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">Average daily tests per 100k people (monthly mean) by country. Data: ourworldindata.org.</p>
 
     <hr class="divider" />
 
@@ -780,7 +797,7 @@
     </div>
     <p class="viz-caption">Interactive comparison of daily new confirmed cases per 100k people (7-day avg). Data: Google COVID-19 Open Data.</p>
 
-    <div class="viz-wrap">
+    <div class="viz-wrap-tall">
       <iframe
         src="plots/kats plots/interactive_country_group_policy_explorer.html"
         title="Interactive: Country group policy explorer"

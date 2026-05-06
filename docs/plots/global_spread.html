@@ -94,7 +94,7 @@
 
 <div id="metric-toggle">
   <button id="btn-cases"  class="active-cases"  onclick="switchMetric('cases')">Cases</button>
-  <button id="btn-deaths"                        onclick="switchMetric('deaths')">Deaths</button>
+  <button id="btn-deaths" class="active-deaths"  onclick="switchMetric('deaths')">Deaths</button>
 </div>
 
 <script>
@@ -114,11 +114,6 @@ function switchMetric(metric) {
     : window._styledict_deaths;
 
   if (typeof fill_map === 'function') fill_map();
-
-  var lc = document.getElementById('legend-cases');
-  var ld = document.getElementById('legend-deaths');
-  if (lc) lc.parentElement.style.display = metric === 'cases'  ? '' : 'none';
-  if (ld) ld.parentElement.style.display = metric === 'deaths' ? '' : 'none';
 }
 </script>
 
@@ -349,7 +344,7 @@ function switchMetric(metric) {
         .tickValues([0.0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1.0]);
 
     color_map_78f4fa5489811086c881687bd4fed1b0.svg = d3.selectAll(".legend.leaflet-control").filter(function(d,i){return i===1;}).append("svg")
-        .attr("id", 'legend-deaths').style('display','none')
+        .attr("id", 'legend-deaths')
         .attr("width", 450)
         .attr("height", 40);
 

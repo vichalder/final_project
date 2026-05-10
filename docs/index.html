@@ -280,6 +280,81 @@
       transform: translateY(-2px);
     }
 
+    .btn-huge {
+      display: inline-block;
+      padding: 1.6rem 5rem;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(12px);
+      border-radius: 50px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--text-dark);
+      text-decoration: none;
+      transition: background 0.25s, box-shadow 0.25s, transform 0.2s;
+      box-shadow: 0 6px 30px rgba(160,160,210,0.25);
+    }
+
+    .btn-huge:hover {
+      background: rgba(255,255,255,0.45);
+      box-shadow: 0 12px 40px rgba(160,160,210,0.4);
+      transform: translateY(-3px);
+    }
+
+    .ref-section {
+      max-width: 780px;
+      margin: 3rem auto 0;
+    }
+
+    .ref-section summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--glass-border);
+      user-select: none;
+    }
+
+    .ref-section summary::after {
+      content: '▼';
+      font-size: 0.65rem;
+      transition: transform 0.2s;
+    }
+
+    .ref-section[open] summary::after {
+      transform: rotate(-180deg);
+    }
+
+    .ref-section summary::-webkit-details-marker { display: none; }
+
+    .ref-body {
+      padding: 1.2rem 0 0.5rem;
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-light);
+    }
+
+    .ref-body ul {
+      padding-left: 1.2rem;
+      margin: 0;
+    }
+
+    .ref-body li {
+      margin-bottom: 0.4rem;
+    }
+
+    .ref-body p {
+      margin: 0 0 0.5rem;
+    }
+
     /* ── STATS STRIP ── */
     .stats-strip {
       display: flex;
@@ -942,6 +1017,68 @@
       ></iframe>
     </div>
     <p class="viz-caption">Figure 17: Interactive country and policy explorer. This figure allows the reader to select up to three countries and compare different combinations of cases, deaths, vaccination, testing, and policy measures. By changing the axes and countries, the reader can explore how different responses and outcomes unfolded over time.</p>
+
+    <hr class="divider" />
+    
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+        <p class="prose">
+          Visit the explainer notebook to get a deeper understanding of the data used in this data story.
+        </p>
+      </p>
+    </div>
+
+    <div style="text-align:center; margin-top: 2rem;">
+      <a href="https://github.com/vichalder/final_project/blob/main/notebooks/Explainer_Notebook.ipynb"
+         class="btn-huge"
+         target="_blank"
+         rel="noopener noreferrer">
+        EXPLAINER NOTEBOOK
+      </a>
+    </div>
+
+    <details class="ref-section" style="margin-top: 3.5rem;">
+      <summary>Data Sources</summary>
+      <div class="ref-body">
+        <p><strong>About the data.</strong> To make comparisons more consistent, we align countries across the same time period and exclude cases with insufficient data coverage. Reported cases and deaths should still be interpreted with caution, since testing levels varied over time and across countries, and official reporting may not always reflect the full scale of infections or mortality.</p>
+        <ul>
+          <li>Google. (n.d.). COVID-19 open data: Epidemiology. Google Health. <a href="https://health.google.com/covid-19/open-data/" target="_blank" rel="noopener noreferrer">https://health.google.com/covid-19/open-data/</a></li>
+          <li>Google. (n.d.). COVID-19 open data: Oxford government response. Google Health. <a href="https://health.google.com/covid-19/open-data/" target="_blank" rel="noopener noreferrer">https://health.google.com/covid-19/open-data/</a></li>
+          <li>Google. (n.d.). COVID-19 open data: Vaccinations. Google Health. <a href="https://health.google.com/covid-19/open-data/" target="_blank" rel="noopener noreferrer">https://health.google.com/covid-19/open-data/</a></li>
+          <li>Our World in Data. (2026). COVID-19 data. GitHub. <a href="https://github.com/owid/covid-19-data/" target="_blank" rel="noopener noreferrer">https://github.com/owid/covid-19-data/</a></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="ref-section" style="margin-top: 1.5rem;">
+      <summary>References</summary>
+      <div class="ref-body">
+        <ul>
+          <li>BBC Future. (2025, March 4). The countries that never locked down for COVID-19. BBC. <a href="https://www.bbc.com/future/article/20250304-the-countries-that-never-locked-down-for-covid-19" target="_blank" rel="noopener noreferrer">https://www.bbc.com/future/article/20250304-the-countries-that-never-locked-down-for-covid-19</a></li>
+          <li>Cho, E. Y., &amp; Choe, Y. J. (2021). School closures during the coronavirus disease 2019 outbreak. <em>Clinical and Experimental Pediatrics</em>, 64(7), 322–327. <a href="https://doi.org/10.3345/cep.2021.00353" target="_blank" rel="noopener noreferrer">https://doi.org/10.3345/cep.2021.00353</a></li>
+          <li>Dasgupta, S. (2022). School in the time of COVID. <em>Frontiers in Education</em>, 7, 1005270. <a href="https://doi.org/10.3389/feduc.2022.1005270" target="_blank" rel="noopener noreferrer">https://doi.org/10.3389/feduc.2022.1005270</a></li>
+          <li>Jakubowski, M., Gajderowicz, T., &amp; Patrinos, H. A. (2025). COVID-19, school closures, and student learning outcomes: New global evidence from PISA. <em>npj Science of Learning</em>, 10(1), Article 5. <a href="https://doi.org/10.1038/s41539-025-00297-3" target="_blank" rel="noopener noreferrer">https://doi.org/10.1038/s41539-025-00297-3</a></li>
+          <li>UNESCO Chair Global Health &amp; Education. (n.d.). COVID-19 and schools. <a href="https://unescochair-ghe.org/resources/covid-19-and-schools/" target="_blank" rel="noopener noreferrer">https://unescochair-ghe.org/resources/covid-19-and-schools/</a></li>
+          <li>Moreland, A., Herlihy, C., Tynan, M. A., Sunshine, G., McCord, R. F., Hilton, C., Poovey, J., Werner, A. K., Jones, C. D., Fulmer, E. B., Gundlapalli, A. V., Strosnider, H., Potts, C., García, M. C., Honeycutt, S., Baldwin, G., Popovic, T., Rascoe, A., Holloway, J., … CDC Public Health Law Program. (2020). Timing of state and territorial COVID-19 stay-at-home orders and changes in population movement—United States, March 1–May 31, 2020. <em>Morbidity and Mortality Weekly Report</em>, 69(35), 1198–1203. <a href="https://doi.org/10.15585/mmwr.mm6935a2" target="_blank" rel="noopener noreferrer">https://doi.org/10.15585/mmwr.mm6935a2</a></li>
+          <li>BBC News. (2021, March 23). Covid: Sweden, Norway and Denmark pause use of Oxford-AstraZeneca vaccine. BBC. <a href="https://www.bbc.com/news/world-europe-56486732" target="_blank" rel="noopener noreferrer">https://www.bbc.com/news/world-europe-56486732</a></li>
+          <li>Folketinget (Danish Parliament). (2021, January). Managing the COVID-19 crisis: Report delivered to the Standing Orders Committee of the Danish Parliament.</li>
+          <li>UK Government. (2020, March 23). Staying at home and away from others (social distancing). <a href="https://www.gov.uk/government/publications/covid-19-stay-at-home-guidance" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/publications/covid-19-stay-at-home-guidance</a></li>
+          <li>Adrjan, P., Ciminelli, G., Judes, A., Koelle, M., Schwellnus, C., &amp; Sinclair, T. M. (2025). Working from home after COVID-19: Evidence from job postings in 20 countries. <em>Labour Economics</em>, 96, 102751. <a href="https://doi.org/10.1016/j.labeco.2025.102751" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.labeco.2025.102751</a></li>
+          <li>Viner, R. M., Russell, S. J., Croker, H., Packer, J., Ward, J., Stansfield, C., Mytton, O., Bonell, C., &amp; Booy, R. (2021). School closure and management practices during coronavirus outbreaks including COVID-19: A rapid systematic review. <em>The Lancet Child &amp; Adolescent Health</em>, 4(5), 397–404. <a href="https://doi.org/10.1016/S2352-4642(20)30095-X" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/S2352-4642(20)30095-X</a></li>
+          <li>Coşkuner Aktaş, S. (2025). Was COVID-19-related working from home (WFH) a chance for change? Gender-based experiences of parents. <em>Humanities and Social Sciences Communications</em>, 12(1), Article 465. <a href="https://doi.org/10.1057/s41599-025-04773-4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1057/s41599-025-04773-4</a></li>
+          <li>Dias da Silva, A., Georgarakos, D., &amp; Weißler, M. (2023). How people want to work: Preferences for remote work after the pandemic. <em>ECB Economic Bulletin</em> (Issue 1). European Central Bank. <a href="https://www.ecb.europa.eu/press/economic-bulletin/focus/2023/html/ecb.ebbox202301_04~1b73ef4872.en.html" target="_blank" rel="noopener noreferrer">https://www.ecb.europa.eu/press/economic-bulletin/focus/2023/html/ecb.ebbox202301_04~1b73ef4872.en.html</a></li>
+          <li>Abildgren, K., Hviid, S. J., &amp; Kuchler, A. (2025, April 23). Working from home and housing demand during the pandemic (Working Paper No. 210). Danmarks Nationalbank.</li>
+          <li>Reifenscheid, M., &amp; Möhring, K. (2025). Support for a legal right to work from home: Do those who need it, support it? The COVID-19 pandemic as natural experiment. <em>Journal of Occupational and Organizational Psychology</em>, 98, e70046. <a href="https://doi.org/10.1111/joop.70046" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/joop.70046</a></li>
+          <li>Partington, R. (2025, May 15). Post-Covid home working has failed to level up UK economy, study finds. <em>The Guardian</em>. <a href="https://www.theguardian.com/business/2025/may/15/covid-pandemic-home-working-careers-uk-economy" target="_blank" rel="noopener noreferrer">https://www.theguardian.com/business/2025/may/15/covid-pandemic-home-working-careers-uk-economy</a></li>
+          <li>Din Offentlige Transport. (n.d.). DOT's strategy. <a href="https://dinoffentligetransport.dk/en/about-your-public-transport/dots-strategy/" target="_blank" rel="noopener noreferrer">https://dinoffentligetransport.dk/en/about-your-public-transport/dots-strategy/</a></li>
+          <li>Statistisches Bundesamt (Destatis). (2024). Passengers carried in public transport. <a href="https://www.destatis.de/EN/Themes/Economic-Sectors-Enterprises/Transport/Passenger-Transport/Tables/passengers-carried.html" target="_blank" rel="noopener noreferrer">https://www.destatis.de/EN/Themes/Economic-Sectors-Enterprises/Transport/Passenger-Transport/Tables/passengers-carried.html</a></li>
+          <li>Department for Transport. (2024). Transport statistics Great Britain 2024. <a href="https://www.gov.uk/government/statistics/transport-statistics-great-britain-2024/transport-statistics-great-britain-2023-domestic-travel" target="_blank" rel="noopener noreferrer">https://www.gov.uk/government/statistics/transport-statistics-great-britain-2024/transport-statistics-great-britain-2023-domestic-travel</a></li>
+          <li>Buehler, R., Pucher, J., White, P., &amp; Currie, G. (2025). Public transport and the COVID-19 pandemic: A comparative analysis of trends and policies in Great Britain, Germany, the USA, Canada, and Australia. <em>Transportation Research Part A</em>, 199, 104549. <a href="https://doi.org/10.1016/j.tra.2025.104549" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.tra.2025.104549</a></li>
+          <li>Henrion, V., Ingvardson, J. B., &amp; Nielsen, O. A. (2023). The influence of the COVID-19 pandemic on travel behaviour in the Greater Copenhagen area. <em>Journal of Advanced Transportation</em>, 2023, Article 9964912. <a href="https://doi.org/10.1155/2023/9964912" target="_blank" rel="noopener noreferrer">https://doi.org/10.1155/2023/9964912</a></li>
+          <li>Statens Serum Institut. (2024, October 29). Computermodel: Massetestning under coronapandemien forhindrede flere ugers nedlukning og tusindvis af indlagte. <a href="https://www.ssi.dk/aktuelt/nyheder/2024/massetestning-under-coronapandemien--forhindrede-flere-ugers-nedlukning-og-tusindvis-af-indlagte" target="_blank" rel="noopener noreferrer">https://www.ssi.dk/aktuelt/nyheder/2024/massetestning-under-coronapandemien--forhindrede-flere-ugers-nedlukning-og-tusindvis-af-indlagte</a></li>
+        </ul>
+      </div>
+    </details>
 
   </section>
 

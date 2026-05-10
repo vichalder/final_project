@@ -468,10 +468,9 @@
     </div>
 
     <p class="hero-eyebrow">DTU · Data Story · 2026</p>
-    <h1 class="hero-title">COVID-19: What approach works for modern pandemics?</h1>
+    <h1 class="hero-title">COVID-19 was a global crisis, but it was lived locally.</h1>
     <p class="hero-subtitle">
-      A data-driven exploration of how different countries responded to the pandemic
-      — and what the numbers reveal about which strategies actually worked.
+      In 2020, COVID-19 spread rapidly across the world, reshaping daily life on a global scale. Cases and deaths rose in waves across continents, while governments responded with restrictions that changed how people worked, travelled, and interacted. This project follows that development through epidemiological and policy data, comparing how the pandemic unfolded over time and across countries. We begin with a global view before zooming in on Denmark, Germany, and Great Britain.
     </p>
     <a href="#story" class="btn-primary">Read the Story</a>
   </section>
@@ -504,15 +503,7 @@
       <p class="chapter-label">Section 1</p>
       <h2 class="chapter-title">A Virus Goes Global</h2>
       <p class="prose">
-        In late 2019, a novel coronavirus emerged in Wuhan, China. Within months
-        it had crossed every border on earth. By March 2020, the World Health
-        Organization declared a pandemic — the first in over a century to bring
-        global society to a near-standstill.
-      </p>
-      <p class="prose">
-        The map below shows how confirmed cases accumulated country by country
-        over the course of the pandemic. Watch the virus trace the routes of
-        global travel, then fan out into the interior of every continent.
+        We begin with a global view. Before comparing Denmark, Germany, and Great Britain, it is useful to see how unevenly different countries experienced the pandemic’s most severe periods. Figure 1 makes that development visible month by month, showing when countries moved into darker shades and how a local outbreak became a global crisis. This broader perspective also helps place the later country comparison in context.
       </p>
     </div>
 
@@ -523,84 +514,114 @@
         loading="lazy"
       ></iframe>
     </div>
-    <p class="viz-caption">Confirmed new cases per million people, by month. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">Figure 1: Animated world map of monthly COVID-19 cases and deaths. The reader can switch between cases and deaths and use the slider to move through time month by month. The color scale indicates relative severity, with darker shades marking higher monthly levels. The map highlights how the pandemic evolved differently across countries and across time. Data: Google COVID-19 Open Data.</p>
 
     <hr class="divider" />
 
     <div class="chapter">
-      <p class="chapter-label">Section 1 — continued</p>
       <h2 class="chapter-title">A crisis that moved in waves</h2>
       <p class="prose">
-        Governments around the world scrambled to contain the spread, but the virus moved faster than policy could respond. Each wave brought new variants, new restrictions, and new lessons — though not all countries absorbed those lessons at the same pace. The first wave of early 2020 was characterized by uncertainty and improvisation; later waves hit populations that were exhausted, polarised, and increasingly divided over the legitimacy of restrictions.
-      </p>
+        Before comparing countries, we first look at the global shape of the pandemic.
+        The virus did not spread and subside in a single peak. Instead, infection rates, as seen in Figure 2, rose and fell over time as countries implemented measures to contain transmission and the virus evolved into new variants.      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/global_new_confirmed_cases_7day_avg.png"
+        alt="7-day average of new confirmed COVID-19 cases for Denmark, Germany, and Great Britain"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">Figure 2: Global new confirmed COVID-19 cases. This figure shows the worldwide sum of daily new confirmed cases, smoothed with a 7-day average and displayed in millions. It highlights the repeated infection waves that shaped the global course of the pandemic. Data: Google COVID-19 Open Data.</p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
       <p class="prose">
-        The stringency index below captures the aggregate tightness of government restrictions over time — school closures, workplace rules, travel bans, and stay-at-home orders combined into a single score. Notice how the world briefly exhaled in summer 2020, then tightened again as the second wave arrived, and again for Omicron in early 2022.
+        Figure 3 shows that deaths generally followed infections with a short delay. But later waves of infection did not lead to equally severe mortality peaks. While case numbers rose much higher in 2021 and 2022, deaths stayed below the worst levels seen earlier in the pandemic. </p>
+      </p>  
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/global_new_covid_deaths_7day_avg.png"
+        alt="7-day average of new confirmed COVID-19 deaths for Denmark, Germany, and Great Britain"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">Figure 3: Global new COVID-19 deaths. This figure shows the worldwide sum of daily new deaths, smoothed with a 7-day average. Compared with cases, the death curve peaks later and follows a different overall pattern, showing that the human cost of the pandemic did not rise and fall at the same pace as infections. Data: Google COVID-19 Open Data.</p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        The stringency index, as seen in Figure 4, and later vaccine rollouts help explain part of this changing picture, showing how restrictions were introduced sharply at first and then eased over time. Together, these figures mark the shift from a single global shock to a more uneven and evolving crisis. </p>
       </p>
     </div>
 
-    <div class="viz-wrap">
-      <iframe
-        src="plots/kats plots/interactive_government_stringency_index_7day_avg.html"
-        title="Average global government stringency index over time"
-        loading="lazy"
-      ></iframe>
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/global_mean_stringency_index_7day_avg.png"
+        alt="7-day average of new confirmed COVID-19 cases for Denmark, Germany, and Great Britain"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
     </div>
-    <p class="viz-caption">Average Government Stringency Index (7-day avg) for selected countries. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">Figure 4: Average global government stringency index. This figure shows the average level of government restrictions across countries over time. It captures the sharp rise in restrictions early in the pandemic and the more gradual easing that followed. Data: Google COVID-19 Open Data.</p>
 
     <hr class="divider" />
 
     <!-- Section 2: Zooming In -->
     <div class="chapter">
       <p class="chapter-label">Section 2</p>
-      <h2 class="chapter-title">One shared pandemic, national timelines</h2>
+      <h2 class="chapter-title">One shared pandemic, three national timelines</h2>
       <p class="prose">
-        While the virus paid no attention to borders, the human response was deeply national — shaped by healthcare infrastructure, political culture, public trust, and geography. Countries that appeared similar on paper diverged sharply in their epidemic trajectories. The difference between a well-managed wave and an overwhelmed health system often came down to decisions made in the first weeks.
+        <strong> Denmark, Germany, and Great Britain offer a focused comparison of neighboring but not identical responses. </strong>
       </p>
       <p class="prose">
-        To understand what made the difference, we narrow our lens to three European
-        neighbours: <strong>Denmark</strong>, <strong>Germany</strong>, and the
-        <strong>United Kingdom</strong>. Each country faced the same virus, the same
-        variants, and broadly similar healthcare systems — yet their epidemic curves
-        diverged in telling ways.
+        COVID-19 did not affect every country in the same way, but it quickly became part of everyday life around the world. Rising case numbers were not just lines on a graph: they meant friends isolating at home, family members testing positive, cancelled plans, and a growing fear of what infection could mean for older relatives and vulnerable people. As the virus spread in waves, it reshaped how people worked, studied, travelled, and met each other. Deaths followed, turning public statistics into something deeply personal. It was in this atmosphere of uncertainty and concern that governments introduced restrictions, first rapidly and broadly, and later in more uneven ways across countries.
+      </p>
+      <p class="prose">
+        Although the pandemic was global, each country responded to the crisis in its own way, and the spread and consequences of COVID-19 varied significantly across regions. This analysis focuses on Denmark, England, and Germany - three countries with which the authors have firsthand experience of the pandemic. These countries are geographically and culturally closely connected, yet their responses to the pandemic differed markedly, making them particularly relevant for comparison.
       </p>
     </div>
 
     <div class="chapter">
-      <p class="chapter-label">Section 2 — continued</p>
       <h2 class="chapter-title">The same virus, different waves</h2>
       <p class="prose">
-        Denmark moved swiftly and decisively, closing schools and borders before most
-        of Europe had registered its first deaths. Germany leaned on its federal
-        structure and strong ICU capacity to absorb successive waves. The UK endured
-        one of the highest death tolls in Western Europe before eventually leading the
-        world in vaccine rollout speed.
+        <strong> Case trajectories diverged sharply across the three countries. </strong>
       </p>
       <p class="prose">
-        The chart below tracks the 7-day rolling average of new confirmed cases across
-        all three countries through to late 2022. The Omicron wave of early 2022 stands
-        out as a unifying shock — but notice how differently each country entered and
-        exited that peak.
+        Once population size is taken into account, the pandemic looks very different across the three countries, as seen in Figure 5. Great Britain experienced high early waves, Germany’s largest case surges arrived later, and Denmark saw a particularly dramatic rise during the Omicron period. Even when all three countries were part of the same European pandemic context, the timing and magnitude of waves did not fully align.
       </p>
     </div>
 
     <div class="viz-wrap" style="padding: 2rem;">
-      <img
-        src="plots/confirmed_cases.png"
-        alt="7-day average of new confirmed COVID-19 cases for Denmark, Germany, and Great Britain"
-        style="width: 100%; height: auto; display: block; border-radius: 12px;"
-      />
+      <iframe
+        src="plots/kats plots/interactive_daily_new_confirmed_cases_per_100k_7day_avg.html"
+        title="Global spread of COVID-19 over time"
+        loading="lazy"
+      ></iframe>
     </div>
-    <p class="viz-caption">7-day rolling average of new confirmed cases. Denmark (pink), Germany (blue), Great Britain (teal). Data: Google COVID-19 Open Data.</p>
-
-    <hr class="divider" />
+    <p class="viz-caption">Figure 5: Population-adjusted COVID-19 case trajectories in Denmark, Germany, and Great Britain. By showing daily new confirmed cases per 100,000 inhabitants, this figure makes the three countries more directly comparable. It reveals distinct national wave patterns, especially the early British peaks and Denmark’s dramatic rise during the Omicron period. Data: Google COVID-19 Open Data.</p>
 
     <div class="chapter">
-      <p class="chapter-label">Section 2 — continued</p>
+      <p style="margin-bottom: 50px;">
       <h2 class="chapter-title">Cases were not the whole story</h2>
       <p class="prose">
-        Confirmed case counts are shaped as much by testing capacity as by true infection rates. Countries that tested widely recorded more cases; those with limited infrastructure undercounted. To compare fairly across nations, we need to look beyond raw case numbers — at deaths, at hospitalisations, at the policies governments put in place, and at the interventions that ultimately changed the course of the pandemic.
+        <strong> Mortality waves followed a different pattern from confirmed infections. </strong>
+      </p>
+      <p class="prose">
+        Confirmed cases capture spread, but deaths show a different dimension of the pandemic. In Figure 6, the mortality curves do not simply mirror cases one-to-one. Great Britain saw severe early mortality, Germany experienced pronounced later peaks, and Denmark’s death rates remained lower in relative terms. 
+      </p>
       </p>
     </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <iframe
+        src="plots/kats plots/interactive_daily_new_deaths_per_100k_7day_avg.html"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Figure 6: Daily new deaths per 100,000 across three countries. Using a 7-day average, this figure compares Denmark, Germany, and Great Britain on a population-adjusted scale. It shows that death rates did not rise and fall in the same way as confirmed cases. Data: Google COVID-19 Open Data.</p>
+
 
     <hr class="divider" />
 
@@ -609,66 +630,105 @@
       <p class="chapter-label">Section 3</p>
       <h2 class="chapter-title">The Age of Lockdown</h2>
       <p class="prose">
-        The pandemic triggered an unprecedented experiment in social control. For the first time in modern history, billions of people were asked — and in many countries legally required — to stay home, close their businesses, keep their children out of school, and forgo ordinary life for an indefinite period.
+        <strong> Stringency rose quickly across all three countries, but it did not stay high in the same way. </strong>
       </p>
       <p class="prose">
-        The human cost of these restrictions was enormous: lost livelihoods, deferred education, strained mental health, and widening inequality. But the epidemiological argument was real: mobility data showed that when people moved less, the virus spread less. The question was never whether restrictions worked in theory — but how long they could be sustained, and at what price.
+        Government responses were not constant throughout the pandemic, as seen in Figure 7. All three countries tightened restrictions early on, but the duration, intensity, and timing of later measures differed. Great Britain was hit hard in the early stages of the pandemic and maintained the strictest restrictions and highest level of stringency for roughly the first year. Germany showed a similar level of restrictions to Denmark during the first ten months, but differed by maintaining comparatively high restrictions throughout the remainder of the pandemic.
+      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <iframe
+        src="plots/kats plots/interactive_government_stringency_index_7day_avg.html"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">
+      Figure 7: Comparative government stringency in Denmark, Germany, and Great Britain. This figure tracks the average level of restrictions over time using the Oxford stringency index. It highlights both the sharp early lockdown phase and the different ways each country maintained or relaxed measures in the later pandemic.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        The Stringency index is not one policy, but a bundle of many different interventions. It is also only a summary. To understand what people actually experienced, we need to look at the policies inside that index.
       </p>
     </div>
 
     <div class="chapter">
-      <p class="chapter-label">Section 3 — continued</p>
-      <h2 class="chapter-title">Restrictions followed different political rhythms</h2>
+      <h2 class="chapter-title">Staying home</h2>
       <p class="prose">
-        The charts below track four key dimensions of pandemic restrictions for Denmark, Germany, and Great Britain — stay-at-home requirements, workplace closures, public transport limits, and school closures. Each policy has its own rhythm, shaped by variant timing, political tolerance, and public compliance.
+        <strong> Lockdown was not equally strict across time or place. </strong>
+      </p>
+      <p class="prose">
+        Stay-at-home requirements were one of the most visible and restrictive tools used during the pandemic. Unlike school closures or testing policies, they directly limited how much people could move, work, and interact. In the index used here, 0 means no measure, 1 recommends staying home, 2 requires staying home with normal exceptions, and 3 requires staying home with minimal exceptions.
+      </p>
+      <p class="prose">
+        Figure 8 shows how these measures changed over time in Denmark, Germany, and Great Britain alongside case levels. What stands out is not only when restrictions were introduced, but how differently they were used. All three countries moved quickly in March 2020 as the first wave emerged. Denmark’s parliamentary review describes a rapid shift from routine monitoring to a partial lockdown in mid-March, reflecting the urgency and uncertainty of that moment.
       </p>
     </div>
 
-    <div class="lockdown-grid">
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/stay_at_home.html"
-            title="Stay-at-home requirements"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">Stay-at-home requirements over time. Data: Google COVID-19 Open Data.</p>
-      </div>
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/workplace_closing.html"
-            title="Workplace closing policies"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">Workplace closing policies over time. Data: Google COVID-19 Open Data.</p>
-      </div>
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/public_transport_closing.html"
-            title="Public transport closing policies"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">Public transport closing policies over time. Data: Google COVID-19 Open Data.</p>
-      </div>
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/school_closing.html"
-            title="School closing policies"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">School closing policies over time. Data: Google COVID-19 Open Data.</p>
-      </div>
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/cases_per_100k_and_stay_at_home_requirements_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">
+      Figure 8: Stay-at-home requirements alongside cases and deaths. For each country, this figure places stay-at-home rules beneath case curves to show how movement restrictions changed across the pandemic. The comparison highlights both the shared early lockdown phase and the different paths taken later on.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        After this shared starting point, the three countries begin to diverge. Denmark appears to use stricter stay-at-home measures for shorter periods, easing them earlier and more often. Germany and Great Britain return to higher levels more repeatedly, especially during later waves. This suggests that stay-at-home rules were not a fixed strategy, but a policy governments adjusted as conditions changed.
+      </p>
+      <p class="prose">
+        Research helps explain why these measures remain debated. Stay-at-home orders did reduce movement, which was one of their main aims, but their effects on cases and deaths are harder to isolate because many other factors were also at play. They were introduced in a period of high uncertainty, before vaccines were available, and were often used to slow transmission and reduce pressure on health systems.
+      </p>
+      <p class="prose">
+        At the same time, the costs were significant. Stay-at-home rules reshaped daily life, contributing to social isolation, economic disruption, and reduced access to services. Seen through Figure 8, they appear as temporary responses to pressure rather than a single long-term strategy. Their effects were real, but so were their trade-offs.
+      </p>
+      </p>
+    </div>
+
+    <div class="chapter">
+      <h2 class="chapter-title">Workplace closings</h2>
+      <p class="prose">
+        <strong> Partial closures, lasting impact. </strong>
+      </p>
+      <p class="prose">
+        Workplace closures were one of the most sustained but generally less extreme restrictions across the three countries. In the index used here, 0 means no measures, 1 recommends closing or working from home, 2 requires closing for some sectors or categories of workers, and 3 requires closing all but essential workplaces.
+      </p>
+      <p class="prose">
+        Figure 9 shows how workplace-closing policies changed over time in Denmark, Germany, and Great Britain alongside case levels. What stands out is that the three countries spent much of the pandemic at level 2 rather than at the strictest level. This suggests that, instead of fully stopping work, governments often tried to reduce contact while keeping parts of the economy running.
+      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/cases_per_100k_and_workplace_closing_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">
+      Figure 9: Comparing workplace-closing rules with case trends. This figure shows daily new cases per 100,000 together with workplace-closing policy levels in Denmark, Germany, and Great Britain. It makes it easier to see when rules were tightened, how long they stayed in place, and how often countries relied on partial rather than full closures.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        After this shared starting point, the three countries begin to diverge. Denmark appears to use stricter stay-at-home measures for shorter periods, easing them earlier and more often. Germany and Great Britain return to higher levels more repeatedly, especially during later waves. This suggests that stay-at-home rules were not a fixed strategy, but a policy governments adjusted as conditions changed.
+      </p>
+      <p class="prose">
+        That makes workplace closures different from many other restrictions. For a large share of workers, especially in office-based jobs, work did not disappear but moved into the home. In that sense, this policy was not only about limiting activity. It also accelerated a broader shift toward remote and hybrid work that lasted beyond the strictest pandemic phases.
+      </p>
+      <p class="prose">
+        At the same time, this shift was uneven. People in higher-income and more office-based jobs were much more likely to work from home, while others continued working in person or faced greater insecurity. Workplace closures therefore changed daily life in very different ways depending on the kind of work people did.
+      </p>
+      <p class="prose">
+        Overall, workplace closures stand out as a policy that did more than temporarily restrict movement. They reshaped where work happened, who could work safely from home, and how many people thought about flexibility after the pandemic.
+      </p>
+      </p>
     </div>
 
     <hr class="divider" />

@@ -468,10 +468,9 @@
     </div>
 
     <p class="hero-eyebrow">DTU · Data Story · 2026</p>
-    <h1 class="hero-title">COVID-19: What approach works for modern pandemics?</h1>
+    <h1 class="hero-title">COVID-19 was a global crisis, but it was lived locally.</h1>
     <p class="hero-subtitle">
-      A data-driven exploration of how different countries responded to the pandemic
-      — and what the numbers reveal about which strategies actually worked.
+      In 2020, COVID-19 spread rapidly across the world, reshaping daily life on a global scale. Cases and deaths rose in waves across continents, while governments responded with restrictions that changed how people worked, travelled, and interacted. This project follows that development through epidemiological and policy data, comparing how the pandemic unfolded over time and across countries. We begin with a global view before zooming in on Denmark, Germany, and Great Britain.
     </p>
     <a href="#story" class="btn-primary">Read the Story</a>
   </section>
@@ -504,15 +503,7 @@
       <p class="chapter-label">Section 1</p>
       <h2 class="chapter-title">A Virus Goes Global</h2>
       <p class="prose">
-        In late 2019, a novel coronavirus emerged in Wuhan, China. Within months
-        it had crossed every border on earth. By March 2020, the World Health
-        Organization declared a pandemic — the first in over a century to bring
-        global society to a near-standstill.
-      </p>
-      <p class="prose">
-        The map below shows how confirmed cases accumulated country by country
-        over the course of the pandemic. Watch the virus trace the routes of
-        global travel, then fan out into the interior of every continent.
+        We begin with a global view. Before comparing Denmark, Germany, and Great Britain, it is useful to see how unevenly different countries experienced the pandemic’s most severe periods. Figure 1 makes that development visible month by month, showing when countries moved into darker shades and how a local outbreak became a global crisis. This broader perspective also helps place the later country comparison in context.
       </p>
     </div>
 
@@ -523,36 +514,64 @@
         loading="lazy"
       ></iframe>
     </div>
-    <p class="viz-caption">Confirmed new cases per million people, by month. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">Figure 1: Animated world map of monthly COVID-19 cases and deaths. The reader can switch between cases and deaths and use the slider to move through time month by month. The color scale indicates relative severity, with darker shades marking higher monthly levels. The map highlights how the pandemic evolved differently across countries and across time. Data: Google COVID-19 Open Data.</p>
 
     <hr class="divider" />
 
     <div class="chapter">
-      <p class="chapter-label">Section 1 — continued</p>
       <h2 class="chapter-title">A crisis that moved in waves</h2>
       <p class="prose">
-        Governments around the world scrambled to contain the spread, but the virus moved faster than policy could respond. Each wave brought new variants, new restrictions, and new lessons — though not all countries absorbed those lessons at the same pace. The first wave of early 2020 was characterized by uncertainty and improvisation; later waves hit populations that were exhausted, polarised, and increasingly divided over the legitimacy of restrictions.
-      </p>
-      <p class="prose">
-        The stringency index below captures the aggregate tightness of government restrictions over time — school closures, workplace rules, travel bans, and stay-at-home orders combined into a single score. Notice how the world briefly exhaled in summer 2020, then tightened again as the second wave arrived, and again for Omicron in early 2022.
-      </p>
+        Before comparing countries, we first look at the global shape of the pandemic.
+        The virus did not spread and subside in a single peak. Instead, infection rates, as seen in Figure 2, rose and fell over time as countries implemented measures to contain transmission and the virus evolved into new variants.      </p>
     </div>
 
-    <div class="viz-wrap">
-      <iframe
-        src="plots/kats plots/interactive_government_stringency_index_7day_avg.html"
-        title="Average global government stringency index over time"
-        loading="lazy"
-      ></iframe>
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/global_new_confirmed_cases_7day_avg.png"
+        alt="7-day average of new confirmed COVID-19 cases for Denmark, Germany, and Great Britain"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
     </div>
-    <p class="viz-caption">Average Government Stringency Index (7-day avg) for selected countries. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">Figure 2: Global new confirmed COVID-19 cases. This figure shows the worldwide sum of daily new confirmed cases, smoothed with a 7-day average and displayed in millions. It highlights the repeated infection waves that shaped the global course of the pandemic. Data: Google COVID-19 Open Data.</p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        Figure 3 shows that deaths generally followed infections with a short delay. But later waves of infection did not lead to equally severe mortality peaks. While case numbers rose much higher in 2021 and 2022, deaths stayed below the worst levels seen earlier in the pandemic. </p>
+      </p>  
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/global_new_covid_deaths_7day_avg.png"
+        alt="7-day average of new confirmed COVID-19 deaths for Denmark, Germany, and Great Britain"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">Figure 3: Global new COVID-19 deaths. This figure shows the worldwide sum of daily new deaths, smoothed with a 7-day average. Compared with cases, the death curve peaks later and follows a different overall pattern, showing that the human cost of the pandemic did not rise and fall at the same pace as infections. Data: Google COVID-19 Open Data.</p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        The stringency index, as seen in Figure 4, and later vaccine rollouts help explain part of this changing picture, showing how restrictions were introduced sharply at first and then eased over time. Together, these figures mark the shift from a single global shock to a more uneven and evolving crisis. </p>
+      </p>
+
+    </div>
+        <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/global_mean_stringency_index_7day_avg.png"
+        alt="7-day average of new confirmed COVID-19 cases for Denmark, Germany, and Great Britain"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">Figure 4: Average global government stringency index. This figure shows the average level of government restrictions across countries over time. It captures the sharp rise in restrictions early in the pandemic and the more gradual easing that followed. Data: Google COVID-19 Open Data.</p>
 
     <hr class="divider" />
 
     <!-- Section 2: Zooming In -->
     <div class="chapter">
       <p class="chapter-label">Section 2</p>
-      <h2 class="chapter-title">One shared pandemic, national timelines</h2>
+      <h2 class="chapter-title">One shared pandemic, three national timelines</h2>
       <p class="prose">
         While the virus paid no attention to borders, the human response was deeply national — shaped by healthcare infrastructure, political culture, public trust, and geography. Countries that appeared similar on paper diverged sharply in their epidemic trajectories. The difference between a well-managed wave and an overwhelmed health system often came down to decisions made in the first weeks.
       </p>

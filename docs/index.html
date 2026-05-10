@@ -555,9 +555,9 @@
       <p class="prose">
         The stringency index, as seen in Figure 4, and later vaccine rollouts help explain part of this changing picture, showing how restrictions were introduced sharply at first and then eased over time. Together, these figures mark the shift from a single global shock to a more uneven and evolving crisis. </p>
       </p>
-
     </div>
-        <div class="viz-wrap" style="padding: 2rem;">
+
+    <div class="viz-wrap" style="padding: 2rem;">
       <img
         src="plots/kats plots/global_mean_stringency_index_7day_avg.png"
         alt="7-day average of new confirmed COVID-19 cases for Denmark, Germany, and Great Britain"
@@ -614,6 +614,15 @@
       </p>
     </div>
 
+    <div class="viz-wrap" style="padding: 2rem;">
+      <iframe
+        src="plots/kats plots/interactive_daily_new_deaths_per_100k_7day_avg.html"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">Figure 6: Daily new deaths per 100,000 across three countries. Using a 7-day average, this figure compares Denmark, Germany, and Great Britain on a population-adjusted scale. It shows that death rates did not rise and fall in the same way as confirmed cases. Data: Google COVID-19 Open Data.</p>
+
+
     <hr class="divider" />
 
     <!-- Section 3: The Age of Lockdown -->
@@ -621,66 +630,105 @@
       <p class="chapter-label">Section 3</p>
       <h2 class="chapter-title">The Age of Lockdown</h2>
       <p class="prose">
-        The pandemic triggered an unprecedented experiment in social control. For the first time in modern history, billions of people were asked — and in many countries legally required — to stay home, close their businesses, keep their children out of school, and forgo ordinary life for an indefinite period.
+        <strong> Stringency rose quickly across all three countries, but it did not stay high in the same way. </strong>
       </p>
       <p class="prose">
-        The human cost of these restrictions was enormous: lost livelihoods, deferred education, strained mental health, and widening inequality. But the epidemiological argument was real: mobility data showed that when people moved less, the virus spread less. The question was never whether restrictions worked in theory — but how long they could be sustained, and at what price.
+        Government responses were not constant throughout the pandemic, as seen in Figure 7. All three countries tightened restrictions early on, but the duration, intensity, and timing of later measures differed. Great Britain was hit hard in the early stages of the pandemic and maintained the strictest restrictions and highest level of stringency for roughly the first year. Germany showed a similar level of restrictions to Denmark during the first ten months, but differed by maintaining comparatively high restrictions throughout the remainder of the pandemic.
+      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <iframe
+        src="plots/kats plots/interactive_government_stringency_index_7day_avg.html"
+        loading="lazy"
+      ></iframe>
+    </div>
+    <p class="viz-caption">
+      Figure 7: Comparative government stringency in Denmark, Germany, and Great Britain. This figure tracks the average level of restrictions over time using the Oxford stringency index. It highlights both the sharp early lockdown phase and the different ways each country maintained or relaxed measures in the later pandemic.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        The Stringency index is not one policy, but a bundle of many different interventions. It is also only a summary. To understand what people actually experienced, we need to look at the policies inside that index.
       </p>
     </div>
 
     <div class="chapter">
-      <p class="chapter-label">Section 3 — continued</p>
-      <h2 class="chapter-title">Restrictions followed different political rhythms</h2>
+      <h2 class="chapter-title">Staying home</h2>
       <p class="prose">
-        The charts below track four key dimensions of pandemic restrictions for Denmark, Germany, and Great Britain — stay-at-home requirements, workplace closures, public transport limits, and school closures. Each policy has its own rhythm, shaped by variant timing, political tolerance, and public compliance.
+        <strong> Lockdown was not equally strict across time or place. </strong>
+      </p>
+      <p class="prose">
+        Stay-at-home requirements were one of the most visible and restrictive tools used during the pandemic. Unlike school closures or testing policies, they directly limited how much people could move, work, and interact. In the index used here, 0 means no measure, 1 recommends staying home, 2 requires staying home with normal exceptions, and 3 requires staying home with minimal exceptions.
+      </p>
+      <p class="prose">
+        Figure 8 shows how these measures changed over time in Denmark, Germany, and Great Britain alongside case levels. What stands out is not only when restrictions were introduced, but how differently they were used. All three countries moved quickly in March 2020 as the first wave emerged. Denmark’s parliamentary review describes a rapid shift from routine monitoring to a partial lockdown in mid-March, reflecting the urgency and uncertainty of that moment.
       </p>
     </div>
 
-    <div class="lockdown-grid">
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/stay_at_home.html"
-            title="Stay-at-home requirements"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">Stay-at-home requirements over time. Data: Google COVID-19 Open Data.</p>
-      </div>
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/workplace_closing.html"
-            title="Workplace closing policies"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">Workplace closing policies over time. Data: Google COVID-19 Open Data.</p>
-      </div>
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/public_transport_closing.html"
-            title="Public transport closing policies"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">Public transport closing policies over time. Data: Google COVID-19 Open Data.</p>
-      </div>
-      <div>
-        <div class="viz-wrap">
-          <iframe
-            src="plots/school_closing.html"
-            title="School closing policies"
-            loading="lazy"
-            style="height: 475px;"
-          ></iframe>
-        </div>
-        <p class="viz-caption">School closing policies over time. Data: Google COVID-19 Open Data.</p>
-      </div>
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/cases_per_100k_and_stay_at_home_requirements_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">
+      Figure 8: Stay-at-home requirements alongside cases and deaths. For each country, this figure places stay-at-home rules beneath case curves to show how movement restrictions changed across the pandemic. The comparison highlights both the shared early lockdown phase and the different paths taken later on.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        After this shared starting point, the three countries begin to diverge. Denmark appears to use stricter stay-at-home measures for shorter periods, easing them earlier and more often. Germany and Great Britain return to higher levels more repeatedly, especially during later waves. This suggests that stay-at-home rules were not a fixed strategy, but a policy governments adjusted as conditions changed.
+      </p>
+      <p class="prose">
+        Research helps explain why these measures remain debated. Stay-at-home orders did reduce movement, which was one of their main aims, but their effects on cases and deaths are harder to isolate because many other factors were also at play. They were introduced in a period of high uncertainty, before vaccines were available, and were often used to slow transmission and reduce pressure on health systems.
+      </p>
+      <p class="prose">
+        At the same time, the costs were significant. Stay-at-home rules reshaped daily life, contributing to social isolation, economic disruption, and reduced access to services. Seen through Figure 8, they appear as temporary responses to pressure rather than a single long-term strategy. Their effects were real, but so were their trade-offs.
+      </p>
+      </p>
+    </div>
+
+    <div class="chapter">
+      <h2 class="chapter-title">Workplace closings</h2>
+      <p class="prose">
+        <strong> Partial closures, lasting impact. </strong>
+      </p>
+      <p class="prose">
+        Workplace closures were one of the most sustained but generally less extreme restrictions across the three countries. In the index used here, 0 means no measures, 1 recommends closing or working from home, 2 requires closing for some sectors or categories of workers, and 3 requires closing all but essential workplaces.
+      </p>
+      <p class="prose">
+        Figure 9 shows how workplace-closing policies changed over time in Denmark, Germany, and Great Britain alongside case levels. What stands out is that the three countries spent much of the pandemic at level 2 rather than at the strictest level. This suggests that, instead of fully stopping work, governments often tried to reduce contact while keeping parts of the economy running.
+      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/cases_per_100k_and_workplace_closing_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">
+      Figure 9: Comparing workplace-closing rules with case trends. This figure shows daily new cases per 100,000 together with workplace-closing policy levels in Denmark, Germany, and Great Britain. It makes it easier to see when rules were tightened, how long they stayed in place, and how often countries relied on partial rather than full closures.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        After this shared starting point, the three countries begin to diverge. Denmark appears to use stricter stay-at-home measures for shorter periods, easing them earlier and more often. Germany and Great Britain return to higher levels more repeatedly, especially during later waves. This suggests that stay-at-home rules were not a fixed strategy, but a policy governments adjusted as conditions changed.
+      </p>
+      <p class="prose">
+        That makes workplace closures different from many other restrictions. For a large share of workers, especially in office-based jobs, work did not disappear but moved into the home. In that sense, this policy was not only about limiting activity. It also accelerated a broader shift toward remote and hybrid work that lasted beyond the strictest pandemic phases.
+      </p>
+      <p class="prose">
+        At the same time, this shift was uneven. People in higher-income and more office-based jobs were much more likely to work from home, while others continued working in person or faced greater insecurity. Workplace closures therefore changed daily life in very different ways depending on the kind of work people did.
+      </p>
+      <p class="prose">
+        Overall, workplace closures stand out as a policy that did more than temporarily restrict movement. They reshaped where work happened, who could work safely from home, and how many people thought about flexibility after the pandemic.
+      </p>
+      </p>
     </div>
 
     <hr class="divider" />

@@ -731,31 +731,111 @@
       </p>
     </div>
 
+    <div class="chapter">
+      <h2 class="chapter-title">Public transport closings</h2>
+      <p class="prose">
+        <strong> A small index with big social consequences. </strong>
+      </p>
+      <p class="prose">
+        Public transport was treated differently from many other restrictions. In Figure 10, the index is almost binary: 0 means no closure, while 1 means public transport was closed or severely restricted. Unlike schools or workplaces, there is little middle ground here. Governments either kept the system broadly open, or they decided that public transport itself was part of the risk.
+      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/kats plots/cases_per_100k_and_public_transport_closing_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">
+      Figure 10: Comparing public transport closures with case trends. This figure shows daily new cases per 100,000 together with public transport-closing rules in Denmark, Germany, and Great Britain. It makes it easier to compare how long each country kept this restriction in place and how those periods related to major case waves. 
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        Denmark used this restriction for the shortest period, Germany for longer, and Great Britain for the longest. At first, this seems to follow the scale of daily travel: Denmark had far fewer journeys per day than Germany or Great Britain. But the comparison is not perfect. Germany had the highest estimated public transport volume, yet Great Britain kept restrictions in place for longer. That raises the same question running through this article: was one country being more careful, or was another taking more risk?      
+      </p>
+      <p class="prose">
+        The wider evidence suggests there is no simple answer. Public transport ridership fell sharply across countries during 2020 and 2021, partly because people feared infection, partly because governments restricted movement, and partly because commuting collapsed as work and education moved online. Studies also show that public transport use fell most during weekday peak commuting hours, while lower-income and carless passengers were often more likely to keep relying on it. This matters because closing or discouraging public transport does not affect everyone equally. For some people it removed a risky environment. For others it removed access to work, school, healthcare, or family support.      
+      </p>
+      </p>
+    </div>
+
+    <div class="chapter">
+      <h2 class="chapter-title">School closings</h2>
+      <p class="prose">
+        <strong> School closures made the pandemic visible in everyday life. </strong>
+      </p>
+      <p class="prose">
+        School closures were one of the most immediate ways people experienced the pandemic. They reshaped daily life at home and affected around 1.3 billion students worldwide.      
+      </p>
+      <p class="prose">
+        In Figure 11, the lower panels show the school closing index, which ranges from 0 to 3. A value of 0 means no measures, 1 indicates recommendations, 2 reflects partial closures, and 3 represents full school closures.
+      </p>
+    </div>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <iframe
+        src="plots/school_closing.html"
+        loading="lazy"
+        style="height: 475px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption">
+      Figure 11: School-closing policies alongside case rates across three countries. For each country, this figure places school-closing rules beneath daily new cases per 100,000. The comparison highlights both the shared early turn to closures and the different reopening paths that followed.
+    </p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+      <p class="prose">
+        All three countries introduce school restrictions at roughly the same time in early 2020. Denmark and Great Britain move quickly to full closures (index 3), while Germany starts at partial closure before also reaching full closure. After this shared start, their paths begin to diverge.
+      </p>
+      <p class="prose">
+        Great Britain appears to hold stricter measures for longer in 2020, while Denmark and Germany begin easing sooner. Denmark stands out for reopening more gradually and even reaching no restrictions by late 2020, though this did not last as cases rose again. Around May 2021, the three countries move in the same direction, lowering school restrictions at roughly the same time. 
+      </p>
+      <p class="prose">
+        Research helps explain why these decisions were so difficult. Evidence on the effectiveness of school closures is mixed. Some studies suggest limited or unclear effects on overall transmission, especially since closures were introduced alongside other measures, making it hard to isolate their impact. At the same time, international organisations such as UNESCO and the WHO have highlighted that closures were consistently linked to harms in education and well-being.
+      </p>
+      <p class="prose">
+        Those harms are more clearly documented. Studies estimate that students lost several months of learning on average, with longer closures linked to greater losses. There is also evidence that these effects were uneven, with disadvantaged students more affected.
+      </p>
+      <p class="prose">
+        Overall, the figure shows how different countries balanced uncertainty. The school closing index captures how strict policies were, but it does not tell us directly how effective they were. Together with the research, it suggests that school closures were not just a public health tool, but a complex trade-off between uncertain benefits and more clearly documented costs.
+      </p>
+      <p class="prose">
+        By 2021, however, the story begins to change. The question was no longer only how to restrict society, but how to reopen it.
+      </p>
+      </p>
+    </div>
+
     <hr class="divider" />
 
     <!-- Section 4: Interventions -->
     <div class="chapter">
       <p class="chapter-label">Section 4</p>
-      <h2 class="chapter-title">Interventions</h2>
+      <h2 class="chapter-title">The beginning of the end</h2>
     </div>
 
     <div class="chapter">
-      <p class="chapter-label">Section 4 — Testing</p>
       <h2 class="chapter-title">Testing as a Tool</h2>
       <p class="prose">
-        Mass testing was one of the few levers governments could pull before vaccines arrived.
-        Countries that tested broadly could isolate cases early and break chains of transmission;
-        those that tested narrowly flew blind. The chart below tracks daily tests per 100,000
-        people — and the official testing policy — for Denmark, Germany, and Great Britain
-        across the pandemic.
+        <strong>From broad restrictions to reopening strategies.</strong>
       </p>
       <p class="prose">
-        Denmark's extraordinarily high testing rates stand out: at peak, the country ran
-        more tests per capita than almost any nation on earth, giving authorities a
-        near-real-time picture of community spread. Notice how testing intensity and policy
-        openness moved together — countries that tested more were also quicker to ease restrictions.
+        The first half of 2021 is particularly interesting, as the countries began reopening at different paces following a fall and winter of strict lockdowns. Testing strategies, in particular, appear to have played an important role in determining when countries reopened. In Denmark, mass testing was used as a tool to facilitate reopening earlier than in many other European countries.
       </p>
     </div>
+
+    <div class="viz-wrap">
+      <iframe
+        src="plots/testing_map.html"
+        title="Global map of COVID-19 testing rates by country"
+        loading="lazy"
+        style="height: 650px;"
+      ></iframe>
+    </div>
+    <p class="viz-caption"> Figure 12: Interactive world map of COVID-19 testing over time. This figure shows how testing levels changed across countries throughout the pandemic. The reader can move through time to see where testing increased, where it remained limited, and how uneven testing capacity was across the world. Data: ourworldindata.org.</p>
 
     <div class="viz-wrap">
       <iframe
@@ -765,7 +845,21 @@
         style="height: 580px;"
       ></iframe>
     </div>
-    <p class="viz-caption">Daily tests per 100k people (7-day avg) and testing policy stringency. Denmark (pink) · Germany (blue) · Great Britain (teal). Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption"> Figure 13: Testing intensity and testing policy in Denmark, Germany, and Great Britain. The upper panels show daily tests per 100,000 people, smoothed with a 7-day average, while the lower panels show the testing policy index on a scale from 0 to 3. Higher values indicate broader access to testing, from no formal policy at 0 to open public testing at 3. Data: Google COVID-19 Open Data.</p>
+
+    <div class="chapter">
+      <p style="margin-bottom: 50px;">
+        <p class="prose">
+          Figure 12 and Figure 13, show that Denmark tested extensively during this period compared with both Germany and Great Britain. Great Britain also built up substantial testing capacity and conducted testing at a high rate. Germany, by contrast, carried out relatively little testing compared with the other two countries. Its testing index never exceeded 246 tests per 100,000 inhabitants, whereas Denmark peaked at 3,285 and Great Britain at 2,085.
+        </p>
+        <p class="prose">
+          A testing index of 3,285 means that approximately 3.3% of the population was tested each day. For Denmark, with a population of 5.85 million, this corresponds to around 192,000 tests per day and 5.77 million tests per month—equivalent to nearly the entire population being tested monthly. This does not mean that every individual was tested once per month; rather, many people were tested multiple times per week in order to attend schools, workplaces, or obtain a digital corona passport, which was required to access many social events. This strict testing policy is also reflected in Denmark’s high stringency index during this period.
+        </p>
+        <p class="prose">
+          An article from Denmark’s Statens Serum Institut suggests that mass testing may have saved Denmark approximately six weeks of lockdown and prevented around 9,000 hospitalizations.
+        </p>
+      </p>
+    </div>
 
     <hr class="divider" />
 
@@ -786,15 +880,7 @@
       </p>
     </div>
 
-    <div class="viz-wrap">
-      <iframe
-        src="plots/testing_map.html"
-        title="Global map of COVID-19 testing rates by country"
-        loading="lazy"
-        style="height: 650px;"
-      ></iframe>
-    </div>
-    <p class="viz-caption">Average daily tests per 100k people (monthly mean) by country. Data: ourworldindata.org.</p>
+
 
     <hr class="divider" />
 

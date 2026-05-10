@@ -776,11 +776,10 @@
     </div>
 
     <div class="viz-wrap" style="padding: 2rem;">
-      <iframe
-        src="plots/school_closing.html"
-        loading="lazy"
-        style="height: 475px;"
-      ></iframe>
+      <img
+        src="plots/school_closings.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
     </div>
     <p class="viz-caption">
       Figure 11: School-closing policies alongside case rates across three countries. For each country, this figure places school-closing rules beneath daily new cases per 100,000. The comparison highlights both the shared early turn to closures and the different reopening paths that followed.
@@ -861,56 +860,45 @@
       </p>
     </div>
 
-    <hr class="divider" />
-
     <div class="chapter">
-      <p class="chapter-label">Section 4 — Testing continued</p>
-      <h2 class="chapter-title">A World Tested Unevenly</h2>
+      <h2 class="chapter-title">Vaccination</h2>
       <p class="prose">
-        The capacity to test was not shared equally. While wealthy nations processed millions
-        of samples a day, large parts of the Global South had little to no systematic testing
-        infrastructure. The map below shows average daily tests per 100,000 people for each
-        country — a stark picture of the global inequality that shaped how the pandemic was
-        seen, tracked, and ultimately controlled.
+        <strong> The later pandemic was shaped by vaccine access. </strong>
       </p>
       <p class="prose">
-        Countries shown in grey had no reliable testing data reported. The contrast between
-        high-income nations clustered in Europe and North America and much of Africa and
-        South Asia underscores how the pandemic's true scale may never be fully known.
+        Testing was certainly not the only measure used to combat the pandemic and reopen society safely. Vaccination programs also played a major role in reopening efforts and help explain, to some extent, why the extremely high infection numbers seen in the later stages of the pandemic did not result in the same proportion of deaths observed at the beginning of the pandemic.
       </p>
     </div>
 
-
-
-    <hr class="divider" />
-
-    <div class="chapter">
-      <p class="chapter-label">Section 4 — Vaccination</p>
-      <h2 class="chapter-title">The Full Picture</h2>
-      <p class="prose">
-        When vaccines arrived in late 2020, the pandemic entered a new phase. Vaccination campaigns moved at vastly different speeds — shaped by supply deals, logistics, vaccine hesitancy, and political will. The countries that vaccinated fastest generally saw the sharpest declines in severe disease, even as case counts continued to climb under Omicron.
-      </p>
-      <p class="prose">
-        Cases alone don't tell the whole story. The interactive dashboard below layers
-        confirmed deaths, vaccination progress, and government stringency alongside case
-        counts — revealing how each country's policy choices and vaccine rollout shaped
-        the trajectory of the pandemic.
-      </p>
-      <p class="prose">
-        Use the range selector or drag the slider at the bottom to zoom into any wave.
-        Toggle individual countries in the legend to compare directly.
-      </p>
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/cases_per_100k_vs_fully_vaccinated_share_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
     </div>
+    <p class="viz-caption">
+      Figure 14: Cases and full vaccination over time across three countries. For each country, this figure places daily new cases per 100,000 alongside the share of the population that was fully vaccinated. The comparison highlights how later case waves unfolded in a context of much higher vaccine coverage than earlier stages of the pandemic.
+    </p>
 
-    <div class="viz-wrap">
-      <iframe
-        src="plots/dashboard.html"
-        title="COVID-19 dashboard: cases, deaths, vaccinations, and stringency"
-        loading="lazy"
-        style="height: 1020px;"
-      ></iframe>
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/cases_per_100k_vs_fully_vaccinated_share_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
     </div>
-    <p class="viz-caption">Cases, deaths, vaccination rate, stringency index, and new doses. Denmark · Germany · Great Britain. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">
+      Figure 15: Daily new deaths per 100,000 and fully vaccinated share in Denmark, Germany, and Great Britain. This figure compares population-adjusted death rates with the share of the population that was fully vaccinated in each country. It shows that later mortality waves generally remained below the worst early peaks, even after case numbers rose again, suggesting that vaccination changed the relationship between infection and death.
+    </p>
+
+    <div class="viz-wrap" style="padding: 2rem;">
+      <img
+        src="plots/cases_per_100k_vs_fully_vaccinated_share_by_country.png"
+        style="width: 100%; height: auto; display: block; border-radius: 12px;"
+      />
+    </div>
+    <p class="viz-caption">
+      Figure 16: Comparing vaccine rollout in Denmark, Germany, and Great Britain. This figure tracks cumulative vaccination coverage as a share of the population, distinguishing between at least one dose and full vaccination. It makes it easier to compare how quickly protection expanded across the three countries.
+    </p>
 
     <hr class="divider" />
 
@@ -920,17 +908,29 @@
       <h2 class="chapter-title">The Question That Remains</h2>
       <p class="chapter-label" style="margin-top: 1rem;">Revisiting the trade-offs of pandemic policy</p>
       <p class="prose">
-        In the years since the pandemic peaked, governments, scientists, and citizens have struggled to assess what worked, what failed, and what should be done differently next time. The answers are not simple — every policy carried costs as well as benefits, and the same intervention could succeed in one context while failing in another.
+        <strong> Compare countries, outcomes, and restrictions to reflect on what you would have done. </strong>
       </p>
       <p class="prose">
-        Stricter lockdowns may have saved lives in the short term, but they also caused lasting harm to education, mental health, and economic equality. Vaccination succeeded where deployed rapidly — but global vaccine equity remained a persistent failure. Mass testing gave some countries a decisive edge, while others relied on blunter instruments. No single approach worked everywhere — and every government made trade-offs they would later regret.
+        Looking back, some parts of the pandemic response seem easier to defend than others. Early restrictions were introduced in a period of deep uncertainty, when governments were trying to slow transmission and prevent health systems from being overwhelmed. But as time went on, the trade-offs became harder to ignore. Some measures may have bought time, while others carried social and economic costs that are clearer in hindsight.
+      </p>
+      <p class="prose">
+        This leaves us with a question that the data cannot answer on their own: 
+      </p>
+      <p class="hero-title">
+        If you had been in charge knowing what you know now, how would you have handled it? 
+      </p>
+      <p class="prose">
+        <strong> Figure 17 lets you explore those choices for yourself.  </strong>
+      </p>
+      <p class="prose">
+        Compare countries, outcomes, and restrictions across different phases of the pandemic. Look for patterns, but also for trade-offs. No country offers a perfect template, and no single graph can tell us who managed the pandemic best. It also reminds us that many of these decisions were made under pressure, without the hindsight we now have. What we can do today is use that hindsight more carefully when thinking about the future.
       </p>
     </div>
 
     <div class="chapter">
-      <h2 class="chapter-title">How would you have handled it?</h2>
+      <h2 class="chapter-title">Start exploring!</h2>
       <p class="prose">
-        The interactive charts below let you explore the key levers of pandemic response — cases and deaths, government stringency, and cumulative outcomes — for any combination of countries and time windows. Use them to form your own judgement about which strategies held up under pressure.
+        Use the explorer below to compare up to three countries of your choice. For each country, you can select one variable for the left axis and one for the right axis, including cases, deaths, vaccination, testing, or different policy measures. This makes it possible to compare not only outcomes, but also the restrictions and strategies that may have shaped them.
       </p>
     </div>
 
@@ -941,7 +941,7 @@
         loading="lazy"
       ></iframe>
     </div>
-    <p class="viz-caption">Interactive comparison of government stringency and selected restrictions by country group. Data: Google COVID-19 Open Data.</p>
+    <p class="viz-caption">Figure 17: Interactive country and policy explorer. This figure allows the reader to select up to three countries and compare different combinations of cases, deaths, vaccination, testing, and policy measures. By changing the axes and countries, the reader can explore how different responses and outcomes unfolded over time.</p>
 
   </section>
 

@@ -226,6 +226,57 @@ function switchMetric(metric) {
                 fill_map();
             });
 
+            // ── Play / pause ──────────────────────────────────────────
+            let _playTimer = null;
+            const _sliderSel = "#slider_macro_element_518c37fc0538029850de738c6a0a665b > input";
+            const _outputSel = "#slider_macro_element_518c37fc0538029850de738c6a0a665b > output";
+
+            const playBtn = slider_body.append("button")
+                .text("▶")
+                .style('margin-left', '10px')
+                .style('font-size', '15px')
+                .style('cursor', 'pointer')
+                .style('padding', '2px 12px')
+                .style('border', '1px solid #aaa')
+                .style('border-radius', '4px')
+                .style('background', '#f5f5f5')
+                .style('vertical-align', 'middle');
+
+            function _stepPlay() {
+                const el = d3.select(_sliderSel);
+                let idx = parseInt(el.property("value"));
+                if (idx >= timestamps.length - 1) {
+                    clearInterval(_playTimer);
+                    _playTimer = null;
+                    playBtn.text("▶");
+                    return;
+                }
+                idx += 1;
+                el.property("value", idx);
+                current_timestamp = timestamps[idx];
+                d3.select(_outputSel).text(formatDate(parseInt(current_timestamp) * 1000));
+                fill_map();
+            }
+
+            playBtn.on("click", function() {
+                if (_playTimer) {
+                    clearInterval(_playTimer);
+                    _playTimer = null;
+                    playBtn.text("▶");
+                } else {
+                    // Restart from beginning if already at end
+                    const el = d3.select(_sliderSel);
+                    if (parseInt(el.property("value")) >= timestamps.length - 1) {
+                        el.property("value", 0);
+                        current_timestamp = timestamps[0];
+                        d3.select(_outputSel).text(formatDate(parseInt(current_timestamp) * 1000));
+                        fill_map();
+                    }
+                    playBtn.text("⏸");
+                    _playTimer = setInterval(_stepPlay, 800);
+                }
+            });
+
             let onEachFeature;
             
 

@@ -164,6 +164,15 @@
       font-size: 0.82rem; font-weight: 500; color: var(--text-mid);
       white-space: nowrap; min-width: 90px;
     }
+    #play-btn {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border: 1px solid var(--glass-border); border-radius: 8px;
+      background: var(--input-bg); color: var(--text-dark);
+      font-size: 13px; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    #play-btn:hover { background: var(--surface-hover); border-color: var(--accent); }
     #map-param-label {
       font-size: 0.75rem; color: var(--text-light); margin-top: 6px;
     }
@@ -247,6 +256,7 @@
   <div class="map-controls">
     <label for="date-slider">World map — per 100k</label>
     <div class="slider-row">
+      <button id="play-btn" aria-label="Play">▶</button>
       <input type="range" id="date-slider" min="0" step="1">
       <span id="date-label"></span>
     </div>
@@ -645,6 +655,43 @@ dateSliderEl.addEventListener('input', () => {
   if (rafPending) return;
   rafPending = true;
   requestAnimationFrame(() => { rafPending = false; updateMap(); });
+});
+
+// ── Play / pause ───────────────────────────────────────────────────────
+const playBtnEl = document.getElementById('play-btn');
+let _playTimer  = null;
+const PLAY_STEP_DAYS = 7;   // advance one week per tick
+const PLAY_INTERVAL  = 150; // ms between ticks (~6.7 fps)
+
+function _playStep() {
+  let idx = parseInt(dateSliderEl.value, 10) + PLAY_STEP_DAYS;
+  if (idx >= ALL_DATES.length) {
+    idx = ALL_DATES.length - 1;
+    dateSliderEl.value = idx;
+    updateMap();
+    clearInterval(_playTimer);
+    _playTimer = null;
+    playBtnEl.textContent = '▶';
+    return;
+  }
+  dateSliderEl.value = idx;
+  updateMap();
+}
+
+playBtnEl.addEventListener('click', () => {
+  if (_playTimer) {
+    clearInterval(_playTimer);
+    _playTimer = null;
+    playBtnEl.textContent = '▶';
+  } else {
+    // Restart from beginning if at the end
+    if (parseInt(dateSliderEl.value, 10) >= ALL_DATES.length - 1) {
+      dateSliderEl.value = 0;
+      updateMap();
+    }
+    playBtnEl.textContent = '⏸';
+    _playTimer = setInterval(_playStep, PLAY_INTERVAL);
+  }
 });
 
 ['DK', 'DE', 'GB'].forEach(k => { if (DATA[k]) addCountry(k); });

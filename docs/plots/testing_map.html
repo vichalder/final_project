@@ -166,7 +166,7 @@
 
             function formatDate(date) {
                var newdate = new moment(date);
-               return newdate.format("ddd MMM DD YYYY");
+               return newdate.format("MMM YYYY");
             }
 
             let slider_body = d3.select("body").insert("div", "div.folium-map")
@@ -178,7 +178,9 @@
                 .style('font-size', '18px')
                 .style('text-align', 'center')
                 .style('font-weight', '500%')
-                .style('margin', '5px');
+                .style('margin', '5px')
+                .style('display', 'inline-block')
+                .style('min-width', '90px');
             // insert time slider
             slider_body.append("input")
                 .attr("type", "range")
@@ -212,6 +214,56 @@
                 let datestring = formatDate(parseInt(current_timestamp)*1000);
                 d3.select("#slider_macro_element_3e12296579ab6e65cc3d5eb830b17666 > output").text(datestring);
                 fill_map();
+            });
+
+            // ── Play / pause ──────────────────────────────────────────
+            let _playTimer = null;
+            const _sliderSel = "#slider_macro_element_3e12296579ab6e65cc3d5eb830b17666 > input";
+            const _outputSel = "#slider_macro_element_3e12296579ab6e65cc3d5eb830b17666 > output";
+
+            const playBtn = slider_body.append("button")
+                .text("▶")
+                .style('margin-left', '10px')
+                .style('font-size', '15px')
+                .style('cursor', 'pointer')
+                .style('padding', '2px 12px')
+                .style('border', '1px solid #aaa')
+                .style('border-radius', '4px')
+                .style('background', '#f5f5f5')
+                .style('vertical-align', 'middle');
+
+            function _stepPlay() {
+                const el = d3.select(_sliderSel);
+                let idx = parseInt(el.property("value"));
+                if (idx >= timestamps.length - 1) {
+                    clearInterval(_playTimer);
+                    _playTimer = null;
+                    playBtn.text("▶");
+                    return;
+                }
+                idx += 1;
+                el.property("value", idx);
+                current_timestamp = timestamps[idx];
+                d3.select(_outputSel).text(formatDate(parseInt(current_timestamp) * 1000));
+                fill_map();
+            }
+
+            playBtn.on("click", function() {
+                if (_playTimer) {
+                    clearInterval(_playTimer);
+                    _playTimer = null;
+                    playBtn.text("▶");
+                } else {
+                    const el = d3.select(_sliderSel);
+                    if (parseInt(el.property("value")) >= timestamps.length - 1) {
+                        el.property("value", 0);
+                        current_timestamp = timestamps[0];
+                        d3.select(_outputSel).text(formatDate(parseInt(current_timestamp) * 1000));
+                        fill_map();
+                    }
+                    playBtn.text("⏸");
+                    _playTimer = setInterval(_stepPlay, 800);
+                }
             });
 
             let onEachFeature;

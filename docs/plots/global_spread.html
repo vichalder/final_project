@@ -176,7 +176,7 @@ function switchMetric(metric) {
 
             function formatDate(date) {
                var newdate = new moment(date);
-               return newdate.format("ddd MMM DD YYYY");
+               return newdate.format("MMM YYYY");
             }
 
             let slider_body = d3.select("body").insert("div", "div.folium-map")
@@ -188,7 +188,9 @@ function switchMetric(metric) {
                 .style('font-size', '18px')
                 .style('text-align', 'center')
                 .style('font-weight', '500%')
-                .style('margin', '5px');
+                .style('margin', '5px')
+                .style('display', 'inline-block')
+                .style('min-width', '90px');
             // insert time slider
             slider_body.append("input")
                 .attr("type", "range")

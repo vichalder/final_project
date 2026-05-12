@@ -245,7 +245,7 @@
 </div>
 <div class="card">
   <div class="map-controls">
-    <label for="date-slider">World map — snapshot date</label>
+    <label for="date-slider">World map — per 100k</label>
     <div class="slider-row">
       <input type="range" id="date-slider" min="0" step="1">
       <span id="date-label"></span>
@@ -264,6 +264,59 @@ const COUNTRY_ISO3  = {"AD":"AND","AE":"ARE","AF":"AFG","AL":"ALB","AO":"AGO","A
 const MAX_COUNTRIES = 3;
 const COLORS = ['#6989f5', '#f07f8c', '#68d9a4'];
 let selectedCountries = [];
+
+const COUNT_PARAMS = new Set([
+  'new_confirmed','new_deceased','new_tested',
+  'cumulative_confirmed','cumulative_deceased','cumulative_tested'
+]);
+
+const POP_DATA = {
+  AD:77265,AE:9770529,AF:38928341,AL:2877800,AO:32866268,AR:45195777,AT:9006398,
+  AU:25499884,AW:106766,AZ:10139177,BA:3280815,BB:287371,BD:164689383,BE:11589616,
+  BF:20903278,BG:6948445,BH:1701583,BI:11890781,BJ:12123198,BM:64184,BN:437483,
+  BO:11673029,BR:212559409,BS:393248,BT:771612,BW:2351625,BY:9449323,BZ:397621,
+  CA:37742157,CD:89561404,CF:4829764,CG:5518092,CH:8654618,CI:26378275,CL:19116209,
+  CM:26545864,CN:1439323774,CO:50882884,CR:5094114,CU:11326616,CV:555988,CY:1207361,
+  CZ:10708981,DE:83783945,DJ:988002,DK:5792203,DM:71991,DO:10847904,DZ:43851043,
+  EC:17643060,EE:1326539,EG:102334403,ER:3546427,ES:46754783,ET:114963583,FI:5540718,
+  FJ:896444,FO:48863,FR:65273512,GA:2225728,GB:67886004,GD:112519,GE:3989175,
+  GH:31072945,GL:56367,GM:2416664,GN:13132792,GR:10423056,GT:17915567,GU:168783,
+  GY:786559,HK:7496988,HN:9904608,HR:4105268,HT:11402533,HU:9660350,ID:273523621,
+  IE:4937796,IL:8655541,IN:1380004385,IQ:40222503,IR:83992953,IS:341250,IT:60461828,
+  JM:2961161,JO:10203140,JP:126476458,KE:53771296,KG:6524191,KH:16718971,KI:119446,
+  KM:869595,KR:51269183,KW:4270563,KZ:18776707,LA:7275556,LB:6825442,LI:38137,
+  LK:21413249,LR:5057677,LS:2142249,LT:2722291,LU:625976,LV:1886202,LY:6871287,
+  MA:36910558,MC:39244,MD:4033963,MG:27691019,ML:20250834,MM:54409794,MN:3278292,
+  MO:649342,MR:4649660,MT:441539,MU:1271767,MW:19129955,MX:128932753,MY:32365998,
+  MZ:31255435,NE:24206636,NG:206139587,NI:6624554,NL:17134873,NO:5421242,NP:29136808,
+  NZ:4822233,OM:4974992,PA:4314768,PE:32971846,PG:8947027,PH:109581085,PK:220892331,
+  PL:37846605,PR:3194034,PS:4803269,PT:10196707,PY:7132530,QA:2881060,RO:19237682,
+  RS:8737370,RU:145934460,RW:12952218,SA:34813867,SB:686878,SC:98340,SD:43849260,
+  SE:10099270,SG:5850342,SI:2078938,SK:5459643,SL:7976985,SM:33938,SN:16743930,
+  SO:15893219,SR:586634,SS:11193729,SV:6486201,SY:17500657,SZ:1160164,TD:16425859,
+  TG:8278737,TH:69799978,TJ:9537642,TL:1318442,TM:6031187,TN:11818618,TO:105697,
+  TR:84339067,TT:1399491,TW:23816775,TZ:59734213,UA:43733759,UG:45741000,
+  US:331002647,UY:3473727,UZ:33469199,VE:28435940,VI:104578,VN:97338583,
+  VU:307150,XK:1775378,YE:29825968,ZA:59308690,ZM:18383956,ZW:14862927
+};
+
+const PARAM_RANGE = {};
+for (const param of Object.keys(PARAM_LABELS)) {
+  const isCount = COUNT_PARAMS.has(param);
+  let lo = Infinity, hi = -Infinity;
+  for (const [iso2, cdata] of Object.entries(DATA)) {
+    const arr = cdata[param];
+    if (!arr) continue;
+    const scale = isCount ? ((POP_DATA[iso2] || 1e6) / 100000) : 1;
+    for (const v of arr) {
+      if (v != null && !isNaN(v)) {
+        const t = Math.log10(Math.max(v / scale, 0) + 1);
+        if (t < lo) lo = t; if (t > hi) hi = t;
+      }
+    }
+  }
+  PARAM_RANGE[param] = { min: lo === Infinity ? 0 : lo, max: hi === -Infinity ? 1 : hi };
+}
 
 const ALL_COUNTRIES = Object.entries(COUNTRY_NAMES).sort((a, b) => a[1].localeCompare(b[1]));
 
@@ -507,6 +560,7 @@ function updateMap() {
   dateLabelEl.textContent = dateStr;
   mapParamEl.textContent  = 'Showing: ' + PARAM_LABELS[p1];
 
+  const isCount = COUNT_PARAMS.has(p1);
   const locs = [], zVals = [], texts = [];
   for (const [iso2, iso3] of Object.entries(COUNTRY_ISO3)) {
     const cdata = DATA[iso2];
@@ -514,23 +568,38 @@ function updateMap() {
     const di  = cdata.dates.indexOf(dateStr);
     const val = di >= 0 ? cdata[p1][di] : null;
     if (val === null || val === undefined) continue;
+    const scale = isCount ? ((POP_DATA[iso2] || 1e6) / 100000) : 1;
+    const vScaled = val / scale;
+    const vLog = Math.log10(Math.max(vScaled, 0) + 1);
     locs.push(iso3);
-    zVals.push(val);
-    texts.push((COUNTRY_NAMES[iso2] || iso2) + ': ' + val.toFixed(2));
+    zVals.push(vLog);
+    const label = isCount ? vScaled.toFixed(2) + ' per 100k' : val.toFixed(2);
+    texts.push((COUNTRY_NAMES[iso2] || iso2) + ': ' + label);
   }
 
   const traces = [
     {
       type: 'choropleth', locationmode: 'ISO-3',
       locations: locs, z: zVals, text: texts,
-      colorscale: 'YlOrRd', reversescale: false,
+      colorscale: 'YlOrRd', reversescale: true,
+      zmin: PARAM_RANGE[p1].min,
+      zmax: PARAM_RANGE[p1].max,
       showscale: true,
       marker: { line: { color: th.border, width: 0.5 } },
-      colorbar: {
-        thickness: 12, len: 0.6, x: 1.01,
-        tickfont: { family: 'Inter, sans-serif', color: th.fontColor, size: 10 },
-        outlinewidth: 0,
-      },
+      colorbar: (() => {
+        const logMax = PARAM_RANGE[p1].max;
+        const cands = isCount
+          ? [0,0.5,1,2,5,10,20,50,100,200,500,1000,2000,5000,10000,50000]
+          : [0,0.5,1,2,5,10,20,50,100,200,500];
+        const tOrig = cands.filter(v => Math.log10(v+1) <= logMax + 0.01);
+        return {
+          thickness: 12, len: 0.6, x: 1.01,
+          tickvals: tOrig.map(v => Math.log10(v+1)),
+          ticktext: tOrig.map(v => v >= 1000 ? Math.round(v/1000)+'k' : v < 1 ? v.toFixed(1) : String(Math.round(v))),
+          tickfont: { family: 'Inter, sans-serif', color: th.fontColor, size: 10 },
+          outlinewidth: 0,
+        };
+      })(),
       hovertemplate: '%{text}<extra></extra>',
     },
   ];
@@ -552,6 +621,7 @@ function updateMap() {
   });
 
   const layout = {
+    uirevision: 'map',
     paper_bgcolor: th.paperBg,
     margin: { t: 0, r: 0, b: 0, l: 0 },
     geo: {
